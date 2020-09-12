@@ -28,8 +28,9 @@ type ApiClient interface {
 	GetSkillList() (*response.ListResponse, error)
 	GetSkillByName(name string) (*response.SkillDetail, error)
 
-	// Skill -> Ability Score
+	// Skill <-> Ability Score
 	GetAbilityScoreForSkill(skillName string) (*response.AbilityScoreDetail, error)
+	GetSkillsForAbilityScore(name string) ([]response.SkillDetail, error)
 }
 
 // region ApiClient Implementation
@@ -127,6 +128,26 @@ func (ac *apiClient) GetAbilityScoreByName(name string) (*response.AbilityScoreD
 	return &d, nil
 }
 
+func (ac *apiClient) GetSkillsForAbilityScore(name string) ([]response.SkillDetail, error) {
+	ability, err := ac.GetAbilityScoreByName(name)
+	if err != nil {
+		return nil, err
+	}
+
+	var result []response.SkillDetail
+	for _, v := range ability.Skills {
+		skill, err := ac.GetSkillByName(v.Index)
+		if err != nil {
+			return nil, err
+		}
+		if skill != nil {
+			result = append(result, *skill)
+		} else {
+			return nil, errors.New("No skill called " + v.Index + " could be found")
+		}
+	}
+	return result, nil
+}
 // endregion
 
 // region Skills
