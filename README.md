@@ -27,3 +27,5 @@ client := godnd5eapi.NewApiClient("<Base URL Here>", godnd5eapi.WithHttpClient(m
 * https://www.dnd5eapi.co/api
 * https://www.dnd5eapi.co/api/ability-scores
 * https://www.dnd5eapi.co/api/ability-scores/{ability_score_name}
+* https://www.dnd5eapi.co/api/skills
+* https://www.dnd5eapi.co/api/skills/{skill_name}

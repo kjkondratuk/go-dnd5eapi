@@ -3,18 +3,7 @@ package response
 type (
 	EndpointResponse map[string]string
 
-	AllAbilityScoresResponse struct {
-		Count   int                   `json:"count"`
-		Results []SummaryAbilityScore `json:"results"`
-	}
-
-	GenericApiEntity struct {
-		Index string `json:"index"`
-		Name  string `json:"name"`
-		Url   string `json:"url"`
-	}
-
-	SummaryAbilityScore struct {
+	APIRef struct {
 		Index string `json:"index"`
 		Name  string `json:"name"`
 		Url   string `json:"url"`
@@ -26,39 +15,26 @@ type (
 		Url         string         `json:"url"`
 		FullName    string         `json:"full_name"`
 		Description []string       `json:"desc"`
-		Skills      []SummarySkill `json:"skills"`
+		Skills      []APIRef `json:"skills"`
 	}
 
-	SummarySkill struct {
-		Index string `json:"index"`
-		Name  string `json:"name"`
-		Url   string `json:"url"`
-	}
+	// endregion
 
+	// region Skills
 	SkillDetail struct {
 		Index        string `json:"index"`
 		Name         string `json:"name"`
 		Url          string `json:"url"`
-		Description  string `json:"desc"`
-		AbilityScore SummaryAbilityScore
+		Description  []string `json:"desc"`
+		AbilityScore APIRef `json:"ability_score"`
 	}
 
-	AllClassesResponse struct {
-		Count   int
-		Results SummaryClass
+	ListResponse struct {
+		Count int `json:"count"`
+		Results []APIRef
 	}
 
-	SummaryClass struct {
-		Index string `json:"index"`
-		Name  string `json:"name"`
-		Url   string `json:"url"`
-	}
-
-	ClassSummary struct {
-		Index string `json:"index"`
-		Name  string `json:"name"`
-		Url   string `json:"url"`
-	}
+	// endregion
 
 	ClassDetail struct {
 		Index              string              `json:"index"`
@@ -69,30 +45,18 @@ type (
 	}
 
 	ProficiencyChoice struct {
-		Choose int                  `json:"choose"`
-		Type   string               `json:"type"`
-		From   []ProficiencySummary `json:"from"`
-	}
-
-	ProficiencySummary struct {
-		Index string `json:"index"`
-		Name  string `json:"name"`
-		Url   string `json:"url"`
+		Choose int      `json:"choose"`
+		Type   string   `json:"type"`
+		From   []APIRef `json:"from"`
 	}
 
 	ProficiencyDetail struct {
-		Index      string             `json:"index"`
-		Name       string             `json:"name"`
-		Url        string             `json:"url"`
-		Type       string             `json:"type"`
-		Classes    []ClassSummary     `json:"classes"`
-		Races      []RaceSummary      `json:"races"`
-		References []GenericApiEntity `json:"references"`
-	}
-
-	RaceSummary struct {
-		Index string `json:"index"`
-		Name  string `json:"name"`
-		Url   string `json:"url"`
+		Index      string   `json:"index"`
+		Name       string   `json:"name"`
+		Url        string   `json:"url"`
+		Type       string   `json:"type"`
+		Classes    []APIRef `json:"classes"`
+		Races      []APIRef `json:"races"`
+		References []APIRef `json:"references"`
 	}
 )
