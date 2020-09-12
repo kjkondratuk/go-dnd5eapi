@@ -64,6 +64,20 @@ func (ac *apiClient) apiGet(uri string) ([]byte, error) {
 	return data, nil
 }
 
+func (ac *apiClient) getListForUrl(url string) (*response.ListResponse, error) {
+	result, err := ac.apiGet(url)
+	if err != nil {
+		return nil, err
+	}
+
+	d := response.ListResponse{}
+	err = json.Unmarshal(result, &d)
+	if err != nil {
+		return nil, err
+	}
+	return &d, nil
+}
+
 // endregion
 
 // region Options
@@ -96,17 +110,7 @@ func (ac *apiClient) GetEndpointList() (*response.EndpointResponse, error) {
 
 // region Ability Scores
 func (ac *apiClient) GetAbilityScoreList() (*response.ListResponse, error) {
-	result, err := ac.apiGet(constants.AbilityScoreEndpoint)
-	if err != nil {
-		return nil, err
-	}
-
-	d := response.ListResponse{}
-	err = json.Unmarshal(result, &d)
-	if err != nil {
-		return nil, err
-	}
-	return &d, nil
+	return ac.getListForUrl(constants.AbilityScoreEndpoint)
 }
 
 func (ac *apiClient) GetAbilityScoreByName(name string) (*response.AbilityScoreDetail, error) {
@@ -128,17 +132,7 @@ func (ac *apiClient) GetAbilityScoreByName(name string) (*response.AbilityScoreD
 // region Skills
 
 func (ac *apiClient) GetSkillList() (*response.ListResponse, error) {
-	result, err := ac.apiGet(constants.SkillsEndpoint)
-	if err != nil {
-		return nil, err
-	}
-
-	d := response.ListResponse{}
-	err = json.Unmarshal(result, &d)
-	if err != nil {
-		return nil, err
-	}
-	return &d, nil
+	return ac.getListForUrl(constants.SkillsEndpoint)
 }
 
 func (ac * apiClient) GetSkillByName(name string) (*response.SkillDetail, error) {
@@ -165,6 +159,13 @@ func (ac *apiClient) GetAbilityScoreForSkill(skillName string) (*response.Abilit
 		return nil, err
 	}
 	return abilityScore, nil
+}
+
+// endregion
+
+// region Classes
+func (ac *apiClient) GetClassList() (*response.ListResponse, error) {
+	return ac.getListForUrl(constants.ClassEndpoint)
 }
 
 // endregion
