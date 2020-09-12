@@ -17,11 +17,19 @@ type apiClient struct {
 }
 
 type ApiClient interface {
+	// Endpoints
 	GetEndpointList() (*response.EndpointResponse, error)
+
+	// Ability Score
 	GetAbilityScoreList() (*response.ListResponse, error)
 	GetAbilityScoreByName(name string) (*response.AbilityScoreDetail, error)
+
+	// Skills
 	GetSkillList() (*response.ListResponse, error)
 	GetSkillByName(name string) (*response.SkillDetail, error)
+
+	// Skill -> Ability Score
+	GetAbilityScoreForSkill(skillName string) (*response.AbilityScoreDetail, error)
 }
 
 // region ApiClient Implementation
