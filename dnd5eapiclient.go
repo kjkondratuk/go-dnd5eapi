@@ -37,6 +37,16 @@ type (
 
 		// Class <-> Proficiencies
 		GetProficienciesForClassByIndex(classIndex string) ([]response.ProficiencyDetail, error)
+		GetProficiencyChoicesForClassByIndex(classIndex string) (map[string][]response.ProficiencyDetail, error)
+
+		// Proficiencies
+		GetProficiencyByIndex(index string) (*response.ProficiencyDetail, error)
+
+		// Subclasses
+		GetSubclassList() (*response.ListResponse, error)
+
+		// Races
+		GetRaceList() (*response.ListResponse, error)
 	}
 )
 
