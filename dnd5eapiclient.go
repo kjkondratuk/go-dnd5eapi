@@ -285,3 +285,10 @@ func (ac *apiClient) GetProficiencyByIndex(index string) (*response.ProficiencyD
 }
 
 // endregion
+
+// region Subclasses
+func (ac *apiClient) GetSubclassList() (*response.ListResponse, error) {
+	return ac.getListForUrl(constants.SubclassesEndpoint)
+}
+
+// endregion

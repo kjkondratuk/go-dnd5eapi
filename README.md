@@ -24,8 +24,29 @@ client := godnd5eapi.NewApiClient("<Base URL Here>", godnd5eapi.WithHttpClient(m
 
 ## Supported Endpoints
 *(Work-in-progress)*
-* https://www.dnd5eapi.co/api
-* https://www.dnd5eapi.co/api/ability-scores
-* https://www.dnd5eapi.co/api/ability-scores/{ability_score}
-* https://www.dnd5eapi.co/api/skills
-* https://www.dnd5eapi.co/api/skills/{skill}
+
+| Endpoint | Fully Implemented | Partially Implemented | Not Implemented |
+| --- | :---: | :---: | :---: |
+| endpoints | X | - | - |
+| ------------------------------- | --- | --- | --- |
+| ability-scores | - | X | - |
+| classes | - | X | - |
+| proficiencies | - | X | - |
+| skills | - | X | - |
+| ------------------------------- | --- | --- | --- |
+| conditions | - | - | - |
+| damage-types | - | - | - |
+| equipment-categories | - | - | - |
+| equipment | - | - | - |
+| features | - | - | - |
+| languages | - | - | - |
+| magic-schools | - | - | - |
+| monsters | - | - | - |
+| races | - | - | - |
+| spellcasting | - | - | - |
+| spells | - | - | - |
+| starting-equipment | - | - | - |
+| subclasses | - | - | - |
+| subraces | - | - | - |
+| traits | - | - | - |
+| weapon-properties | - | - | - |

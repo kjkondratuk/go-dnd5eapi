@@ -46,7 +46,7 @@ type (
 		Proficiencies         []APIRef            `json:"proficiencies"`
 		SavingThrows          APIRef              `json:"saving_throws"`
 		StartingEquipmentLink string              `json:"starting_equipment"`
-		ClassLevelsLink       string              `json:"class_levels"`
+		LevelsLink            string              `json:"class_levels"`
 		Subclasses            []APIRef            `json:"subclasses"`
 	}
 
@@ -67,6 +67,18 @@ type (
 		Classes    []APIRef `json:"classes"`
 		Races      []APIRef `json:"races"`
 		References []APIRef `json:"references"`
+	}
+	// endregion
+
+	// region Subclass
+	SubclassDetail struct {
+		Index       string   `json:"index"`
+		Name        string   `json:"name"`
+		Url         string   `json:"url"`
+		FlavorText  string   `json:"subclass_flavor"`
+		Description []string `json:"desc"`
+		Class       APIRef   `json:"class"`
+		LevelsLink  string   `json:"subclass_levels"`
 	}
 	// endregion
 )
