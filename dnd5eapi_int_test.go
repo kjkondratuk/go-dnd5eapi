@@ -33,7 +33,7 @@ func TestApiClient_GetAbilityScoreList(t *testing.T) {
 }
 
 func TestApiClient_GetAbilityScoreByName(t *testing.T) {
-	response, err := client.GetAbilityScoreByName("CHA")
+	response, err := client.GetAbilityScoreByIndex("CHA")
 	assert.Nil(t, err, "Should not receive an error contacting API.")
 	_, _ = fmt.Fprintln(os.Stdout, response)
 	assert.True(t, true, "Should complete successfully!")
