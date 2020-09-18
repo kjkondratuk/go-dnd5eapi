@@ -5,8 +5,6 @@ import (
 	"errors"
 	"io/ioutil"
 	"net/http"
-
-	"github.com/kjkondratuk/go-dnd5eapi/response"
 )
 
 type (
@@ -15,39 +13,52 @@ type (
 		baseURL string
 	}
 
+	EndpointResponse map[string]string
+
+	APIRef struct {
+		Index string `json:"index"`
+		Name  string `json:"name"`
+		Url   string `json:"url"`
+	}
+
+	ListResponse struct {
+		Count   int `json:"count"`
+		Results []APIRef
+	}
+
 	ApiClient interface {
 		// Endpoints
-		GetEndpointList() (*response.EndpointResponse, error)
+		GetEndpointList() (*EndpointResponse, error)
 
 		// Ability Score
-		GetAbilityScoreList() (*response.ListResponse, error)
-		GetAbilityScoreByIndex(index string) (*response.AbilityScoreDetail, error)
+		GetAbilityScoreList() (*ListResponse, error)
+		GetAbilityScoreByIndex(index string) (*AbilityScoreDetail, error)
 
 		// Skills
-		GetSkillList() (*response.ListResponse, error)
-		GetSkillByIndex(index string) (*response.SkillDetail, error)
+		GetSkillList() (*ListResponse, error)
+		GetSkillByIndex(index string) (*SkillDetail, error)
 
 		// Skill <-> Ability Score
-		GetAbilityScoreForSkillByIndex(skillIndex string) (*response.AbilityScoreDetail, error)
-		GetSkillsForAbilityByIndex(index string) ([]response.SkillDetail, error)
+		GetAbilityScoreForSkillByIndex(skillIndex string) (*AbilityScoreDetail, error)
+		GetSkillsForAbilityByIndex(index string) ([]SkillDetail, error)
 
 		// Class
-		GetClassList() (*response.ListResponse, error)
-		GetClassByIndex(index string) (*response.ClassDetail, error)
+		GetClassList() (*ListResponse, error)
+		GetClassByIndex(index string) (*ClassDetail, error)
 
 		// Class <-> Proficiencies
-		GetProficienciesForClassByIndex(classIndex string) ([]response.ProficiencyDetail, error)
-		GetProficiencyChoicesForClassByIndex(classIndex string) (map[string][]response.ProficiencyDetail, error)
+		GetProficienciesForClassByIndex(classIndex string) ([]ProficiencyDetail, error)
+		GetProficiencyChoicesForClassByIndex(classIndex string) (map[string][]ProficiencyDetail, error)
 
 		// Proficiencies
-		GetProficiencyByIndex(index string) (*response.ProficiencyDetail, error)
+		GetProficiencyByIndex(index string) (*ProficiencyDetail, error)
 
 		// Subclasses
-		GetSubclassList() (*response.ListResponse, error)
+		GetSubclassList() (*ListResponse, error)
 
 		// Races
-		GetRaceList() (*response.ListResponse, error)
-		GetRaceByIndex(index string) (*response.RaceDetail, error)
+		GetRaceList() (*ListResponse, error)
+		GetRaceByIndex(index string) (*RaceDetail, error)
 	}
 )
 
@@ -84,13 +95,13 @@ func (ac *apiClient) apiGet(uri string) ([]byte, error) {
 	return data, nil
 }
 
-func (ac *apiClient) getListForUrl(url string) (*response.ListResponse, error) {
+func (ac *apiClient) getListForUrl(url string) (*ListResponse, error) {
 	result, err := ac.apiGet(url)
 	if err != nil {
 		return nil, err
 	}
 
-	d := response.ListResponse{}
+	d := ListResponse{}
 	err = json.Unmarshal(result, &d)
 	if err != nil {
 		return nil, err

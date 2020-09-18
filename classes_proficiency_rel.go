@@ -2,17 +2,15 @@ package go_dnd5eapi
 
 import (
 	"errors"
-
-	"github.com/kjkondratuk/go-dnd5eapi/response"
 )
 
-func (ac *apiClient) GetProficienciesForClassByIndex(classIndex string) ([]response.ProficiencyDetail, error) {
+func (ac *apiClient) GetProficienciesForClassByIndex(classIndex string) ([]ProficiencyDetail, error) {
 	class, err := ac.GetClassByIndex(classIndex)
 	if err != nil {
 		return nil, err
 	}
 
-	var result []response.ProficiencyDetail
+	var result []ProficiencyDetail
 	for _, v := range class.Proficiencies {
 		prof, err := ac.GetProficiencyByIndex(v.Index)
 		if err != nil {
@@ -27,15 +25,15 @@ func (ac *apiClient) GetProficienciesForClassByIndex(classIndex string) ([]respo
 	return result, nil
 }
 
-func (ac *apiClient) GetProficiencyChoicesForClassByIndex(classIndex string) (map[string][]response.ProficiencyDetail, error) {
+func (ac *apiClient) GetProficiencyChoicesForClassByIndex(classIndex string) (map[string][]ProficiencyDetail, error) {
 	class, err := ac.GetClassByIndex(classIndex)
 	if err != nil {
 		return nil, err
 	}
 
-	var result = make(map[string][]response.ProficiencyDetail)
+	var result = make(map[string][]ProficiencyDetail)
 	for i, choice := range class.ProficiencyChoices {
-		var profs []response.ProficiencyDetail
+		var profs []ProficiencyDetail
 		for _, prof := range class.ProficiencyChoices[i].From {
 			p, err := ac.GetProficiencyByIndex(prof.Index)
 			if err != nil {

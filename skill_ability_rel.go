@@ -2,17 +2,15 @@ package go_dnd5eapi
 
 import (
 	"errors"
-
-	"github.com/kjkondratuk/go-dnd5eapi/response"
 )
 
-func (ac *apiClient) GetSkillsForAbilityByIndex(index string) ([]response.SkillDetail, error) {
+func (ac *apiClient) GetSkillsForAbilityByIndex(index string) ([]SkillDetail, error) {
 	ability, err := ac.GetAbilityScoreByIndex(index)
 	if err != nil {
 		return nil, err
 	}
 
-	var result []response.SkillDetail
+	var result []SkillDetail
 	for _, v := range ability.Skills {
 		skill, err := ac.GetSkillByIndex(v.Index)
 		if err != nil {
@@ -27,7 +25,7 @@ func (ac *apiClient) GetSkillsForAbilityByIndex(index string) ([]response.SkillD
 	return result, nil
 }
 
-func (ac *apiClient) GetAbilityScoreForSkillByIndex(skillIndex string) (*response.AbilityScoreDetail, error) {
+func (ac *apiClient) GetAbilityScoreForSkillByIndex(skillIndex string) (*AbilityScoreDetail, error) {
 	skill, err := ac.GetSkillByIndex(skillIndex)
 	if err != nil {
 		return nil, err

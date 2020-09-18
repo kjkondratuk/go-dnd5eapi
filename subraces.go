@@ -1,4 +1,4 @@
-package response
+package go_dnd5eapi
 
 type (
 	Subrace struct {
