@@ -24,7 +24,7 @@ type (
 	}
 )
 
-
+// TODO : refactor each endpoint class into its own client
 func (ac *apiClient) GetAbilityScoreList() (*ListResponse, error) {
 	return ac.getListForUrl(constants.AbilityScoreEndpoint)
 }
