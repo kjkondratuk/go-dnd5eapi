@@ -7,8 +7,8 @@ import (
 	"testing"
 )
 
-func TestEndpoints_GetEndpointList(t *testing.T) {
-	_, err := Client.GetEndpointList()
+func TestClasses_GetClassByIndex_IT(t *testing.T) {
+	_, err := Client.GetClassByIndex("bard")
 	assert.Nil(t, err, "Should not receive an error contacting API.")
 	assert.True(t, true, "Should complete successfully!")
 }

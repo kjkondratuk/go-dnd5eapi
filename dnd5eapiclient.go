@@ -47,6 +47,7 @@ type (
 
 		// Races
 		GetRaceList() (*response.ListResponse, error)
+		GetRaceByIndex(index string) (*response.RaceDetail, error)
 	}
 )
 
