@@ -8,7 +8,7 @@ type (
 		HitDie                int                 `json:"hit_die"`
 		ProficiencyChoices    []ProficiencyChoice `json:"proficiency_choices"`
 		Proficiencies         []APIRef            `json:"proficiencies"`
-		SavingThrows          APIRef              `json:"saving_throws"`
+		SavingThrows          []APIRef              `json:"saving_throws"`
 		StartingEquipmentLink string              `json:"starting_equipment"`
 		LevelsLink            string              `json:"class_levels"`
 		Subclasses            []APIRef            `json:"subclasses"`

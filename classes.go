@@ -2,7 +2,6 @@ package go_dnd5eapi
 
 import (
 	"encoding/json"
-
 	"github.com/kjkondratuk/go-dnd5eapi/constants"
 	"github.com/kjkondratuk/go-dnd5eapi/response"
 )
@@ -24,3 +23,4 @@ func (ac *apiClient) GetClassByIndex(index string) (*response.ClassDetail, error
 	}
 	return &d, nil
 }
+
