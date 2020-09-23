@@ -51,6 +51,7 @@ type (
 		GetProficiencyChoicesForClassByIndex(classIndex string) (map[string][]ProficiencyDetail, error)
 
 		// Proficiencies
+		GetProficiencyList() (*ListResponse, error)
 		GetProficiencyByIndex(index string) (*ProficiencyDetail, error)
 
 		// Subclasses
@@ -59,6 +60,10 @@ type (
 		// Races
 		GetRaceList() (*ListResponse, error)
 		GetRaceByIndex(index string) (*RaceDetail, error)
+
+		// Languages
+		GetLanguageList() (*ListResponse, error)
+		GetLanguageByIndex(index string) (*LanguageDetail, error)
 	}
 )
 

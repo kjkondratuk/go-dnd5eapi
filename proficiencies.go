@@ -24,6 +24,10 @@ type (
 	}
 )
 
+func (ac *apiClient) GetProficiencyList() (*ListResponse, error) {
+	return ac.getListForUrl(constants.ProficienciesEndpoint)
+}
+
 func (ac *apiClient) GetProficiencyByIndex(index string) (*ProficiencyDetail, error) {
 	result, err := ac.apiGet(constants.ProficienciesChildEndpoint + index)
 	if err != nil {

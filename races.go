@@ -2,6 +2,7 @@ package go_dnd5eapi
 
 import (
 	"encoding/json"
+
 	"github.com/kjkondratuk/go-dnd5eapi/constants"
 )
 
@@ -16,7 +17,7 @@ type (
 		Age                   string         `json:"age"`
 		Size                  string         `json:"size"`
 		SizeDescription       string         `json:"size_description"`
-		StartingProficiencies []string       `json:"starting_proficiencies"`
+		StartingProficiencies []APIRef       `json:"starting_proficiencies"`
 		Languages             []APIRef       `json:"languages"`
 		LanguageDescription   string         `json:"language_desc"`
 		Traits                []APIRef       `json:"traits"`
@@ -30,7 +31,7 @@ func (ac *apiClient) GetRaceList() (*ListResponse, error) {
 }
 
 func (ac *apiClient) GetRaceByIndex(index string) (*RaceDetail, error) {
-	result, err := ac.apiGet(constants.ProficienciesChildEndpoint + index)
+	result, err := ac.apiGet(constants.RacesChildEndpoint + index)
 	if err != nil {
 		return nil, err
 	}
