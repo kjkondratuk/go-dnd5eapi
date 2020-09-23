@@ -13,11 +13,15 @@ import (
 
 var (
 	APIBaseURL = os.Getenv("API_ROOT")
-	Client     = NewEndpointsClient(api.NewBasicsProvider(&http.Client{}, APIBaseURL))
+	Client     = NewClient(api.NewBasicsProvider(&http.Client{}, APIBaseURL))
 )
 
-func TestEndpoints_GetEndpointList(t *testing.T) {
-	_, err := Client.GetEndpointList()
+func TestMain(t *testing.M) {
+	t.Run()
+}
+
+func TestEndpoints_GetList(t *testing.T) {
+	_, err := Client.GetList()
 	assert.Nil(t, err, "Should not receive an error contacting API.")
 	assert.True(t, true, "Should complete successfully!")
 }

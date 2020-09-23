@@ -13,17 +13,22 @@ import (
 
 var (
 	APIBaseURL = os.Getenv("API_ROOT")
-	Client     = NewSubclassClient(api.NewBasicsProvider(&http.Client{}, APIBaseURL))
+	Client     = NewClient(api.NewBasicsProvider(&http.Client{}, APIBaseURL))
 )
 
-func TestSubclasses_GetSubclassList_IT(t *testing.T) {
-	_, err := Client.GetSubclassList()
+func TestMain(t *testing.M) {
+	t.Run()
+}
+
+func TestSubclasses_GetList_IT(t *testing.T) {
+	_, err := Client.GetList()
+	println(err)
 	assert.Nil(t, err, "Should not receive an error contacting API.")
 	assert.True(t, true, "Should complete successfully!")
 }
 
-func TestSubclasses_GetSubclassByIndex_IT(t *testing.T) {
-	_, err := Client.GetSubclassByIndex("berserker")
+func TestSubclasses_GetByIndex_IT(t *testing.T) {
+	_, err := Client.GetByIndex("berserker")
 	assert.Nil(t, err, "Should not receive an error contacting API.")
 	assert.True(t, true, "Should complete successfully!")
 }

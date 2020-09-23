@@ -15,17 +15,17 @@ type (
 	}
 
 	EndpointsClient interface {
-		GetEndpointList() (*EndpointResponse, error)
+		GetList() (*EndpointResponse, error)
 	}
 )
 
-func NewEndpointsClient(basicsProvider api.BasicsProvider) EndpointsClient {
+func NewClient(basicsProvider api.BasicsProvider) EndpointsClient {
 	return &endpointsClient{
 		basicsProvider: basicsProvider,
 	}
 }
 
-func (ac *endpointsClient) GetEndpointList() (*EndpointResponse, error) {
+func (ac *endpointsClient) GetList() (*EndpointResponse, error) {
 	result, err := ac.basicsProvider.ApiGet(constants.RootEndpoint)
 	if err != nil {
 		return nil, err

@@ -13,18 +13,21 @@ import (
 
 var (
 	APIBaseURL = os.Getenv("API_ROOT")
-	Client     = NewAbilityScoreClient(api.NewBasicsProvider(&http.Client{}, APIBaseURL))
+	Client     = NewClient(api.NewBasicsProvider(&http.Client{}, APIBaseURL))
 )
 
-// TODO: update integration tests with more targeted assertions than just "this completed without error"
-func TestAbilityScores_GetAbilityScoreList_IT(t *testing.T) {
-	_, err := Client.GetAbilityScoreList()
+func TestMain(t *testing.M) {
+	t.Run()
+}
+
+func TestAbilityScores_GetList_IT(t *testing.T) {
+	_, err := Client.GetList()
 	assert.Nil(t, err, "Should not receive an error contacting API.")
 	assert.True(t, true, "Should complete successfully!")
 }
 
-func TestAbilityScores_GetAbilityScoreByName_IT(t *testing.T) {
-	_, err := Client.GetAbilityScoreByIndex("CHA")
+func TestAbilityScores_GetByIndex_IT(t *testing.T) {
+	_, err := Client.GetByIndex("CHA")
 	assert.Nil(t, err, "Should not receive an error contacting API.")
 	assert.True(t, true, "Should complete successfully!")
 }

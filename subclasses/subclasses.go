@@ -28,22 +28,22 @@ type (
 	}
 
 	SubclassClient interface {
-		GetSubclassList() (*api.ListResponse, error)
-		GetSubclassByIndex(index string) (*SubclassDetail, error)
+		GetList() (*api.ListResponse, error)
+		GetByIndex(index string) (*SubclassDetail, error)
 	}
 )
 
-func NewSubclassClient(basicsProvider api.BasicsProvider) SubclassClient {
+func NewClient(basicsProvider api.BasicsProvider) SubclassClient {
 	return &subclassClient{
 		basicsProvider: basicsProvider,
 	}
 }
 
-func (ac *subclassClient) GetSubclassList() (*api.ListResponse, error) {
+func (ac *subclassClient) GetList() (*api.ListResponse, error) {
 	return ac.basicsProvider.GetListForUrl(SubclassesEndpoint)
 }
 
-func (ac *subclassClient) GetSubclassByIndex(index string) (*SubclassDetail, error) {
+func (ac *subclassClient) GetByIndex(index string) (*SubclassDetail, error) {
 	result, err := ac.basicsProvider.ApiGet(SubclassesChildEnpoint + index)
 	if err != nil {
 		return nil, err

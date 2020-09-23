@@ -13,17 +13,21 @@ import (
 
 var (
 	APIBaseURL = os.Getenv("API_ROOT")
-	Client     = NewSkillClient(api.NewBasicsProvider(&http.Client{}, APIBaseURL))
+	Client     = NewClient(api.NewBasicsProvider(&http.Client{}, APIBaseURL))
 )
 
-func TestSkills_GetSkillList_IT(t *testing.T) {
-	_, err := Client.GetSkillList()
+func TestMain(t *testing.M) {
+	t.Run()
+}
+
+func TestSkills_GetList_IT(t *testing.T) {
+	_, err := Client.GetList()
 	assert.Nil(t, err, "Should not receive an error contacting API.")
 	assert.True(t, true, "Should complete successfully!")
 }
 
-func TestSkills_GetSkillByIndex_IT(t *testing.T) {
-	_, err := Client.GetSkillByIndex("acrobatics")
+func TestSkills_GetByIndex_IT(t *testing.T) {
+	_, err := Client.GetByIndex("acrobatics")
 	assert.Nil(t, err, "Should not receive an error contacting API.")
 	assert.True(t, true, "Should complete successfully!")
 }

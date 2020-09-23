@@ -13,7 +13,7 @@ import (
 )
 
 type (
-	apiClient struct {
+	Client struct {
 		basicsProvider api.BasicsProvider
 		asc            ability_scores.AbilityScoreClient
 		cc             classes.ClassesClient
@@ -24,20 +24,18 @@ type (
 		sc             skills.SkillClient
 		scc            subclasses.SubclassClient
 	}
-
-	ApiClient interface{}
 )
 
-func NewApiClient(basicsProvider api.BasicsProvider) ApiClient {
-	return &apiClient{
+func NewClient(basicsProvider api.BasicsProvider) *Client {
+	return &Client{
 		basicsProvider: basicsProvider,
-		asc:            ability_scores.NewAbilityScoreClient(basicsProvider),
-		cc:             classes.NewClassesClient(basicsProvider),
-		ec:             endpoints.NewEndpointsClient(basicsProvider),
-		lc:             languages.NewLanguagesClient(basicsProvider),
-		pc:             proficiencies.NewProficiencyClient(basicsProvider),
-		rc:             races.NewRaceClient(basicsProvider),
-		sc:             skills.NewSkillClient(basicsProvider),
-		scc:            subclasses.NewSubclassClient(basicsProvider),
+		asc:            ability_scores.NewClient(basicsProvider),
+		cc:             classes.NewClient(basicsProvider),
+		ec:             endpoints.NewClient(basicsProvider),
+		lc:             languages.NewClient(basicsProvider),
+		pc:             proficiencies.NewClient(basicsProvider),
+		rc:             races.NewClient(basicsProvider),
+		sc:             skills.NewClient(basicsProvider),
+		scc:            subclasses.NewClient(basicsProvider),
 	}
 }

@@ -13,11 +13,21 @@ import (
 
 var (
 	APIBaseURL = os.Getenv("API_ROOT")
-	Client     = NewClassesClient(api.NewBasicsProvider(&http.Client{}, APIBaseURL))
+	Client     = NewClient(api.NewBasicsProvider(&http.Client{}, APIBaseURL))
 )
 
-func TestClasses_GetClassByIndex_IT(t *testing.T) {
-	_, err := Client.GetClassByIndex("bard")
+func TestMain(t *testing.M) {
+	t.Run()
+}
+
+func TestClasses_GetList_IT(t *testing.T) {
+	_, err := Client.GetList()
+	assert.Nil(t, err, "Should not receive an error contacting API.")
+	assert.True(t, true, "Should complete successfully!")
+}
+
+func TestClasses_GetByIndex_IT(t *testing.T) {
+	_, err := Client.GetByIndex("bard")
 	assert.Nil(t, err, "Should not receive an error contacting API.")
 	assert.True(t, true, "Should complete successfully!")
 }

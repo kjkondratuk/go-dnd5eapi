@@ -38,22 +38,22 @@ type (
 	}
 
 	RaceClient interface {
-		GetRaceList() (*api.ListResponse, error)
-		GetRaceByIndex(index string) (*RaceDetail, error)
+		GetList() (*api.ListResponse, error)
+		GetByIndex(index string) (*RaceDetail, error)
 	}
 )
 
-func NewRaceClient(basicsProvider api.BasicsProvider) RaceClient {
+func NewClient(basicsProvider api.BasicsProvider) RaceClient {
 	return &raceClient{
 		basicsProvider: basicsProvider,
 	}
 }
 
-func (ac *raceClient) GetRaceList() (*api.ListResponse, error) {
+func (ac *raceClient) GetList() (*api.ListResponse, error) {
 	return ac.basicsProvider.GetListForUrl(constants.RacesEndpoint)
 }
 
-func (ac *raceClient) GetRaceByIndex(index string) (*RaceDetail, error) {
+func (ac *raceClient) GetByIndex(index string) (*RaceDetail, error) {
 	result, err := ac.basicsProvider.ApiGet(constants.RacesChildEndpoint + index)
 	if err != nil {
 		return nil, err

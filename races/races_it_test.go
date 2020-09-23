@@ -13,17 +13,21 @@ import (
 
 var (
 	APIBaseURL = os.Getenv("API_ROOT")
-	Client     = NewRaceClient(api.NewBasicsProvider(&http.Client{}, APIBaseURL))
+	Client     = NewClient(api.NewBasicsProvider(&http.Client{}, APIBaseURL))
 )
 
-func TestRaces_GetRaceList_IT(t *testing.T) {
-	_, err := Client.GetRaceList()
+func TestMain(t *testing.M) {
+	t.Run()
+}
+
+func TestRaces_GetList_IT(t *testing.T) {
+	_, err := Client.GetList()
 	assert.Nil(t, err, "Should not receive an error contacting API.")
 	assert.True(t, true, "Should complete successfully!")
 }
 
-func TestRaces_GetRaceByIndex_IT(t *testing.T) {
-	_, err := Client.GetRaceByIndex("half-orc")
+func TestRaces_GetByIndex_IT(t *testing.T) {
+	_, err := Client.GetByIndex("half-orc")
 	assert.Nil(t, err, "Should not receive an error contacting API.")
 	assert.True(t, true, "Should complete successfully!")
 }

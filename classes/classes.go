@@ -37,22 +37,22 @@ type (
 	}
 
 	ClassesClient interface {
-		GetClassList() (*api.ListResponse, error)
-		GetClassByIndex(index string) (*ClassDetail, error)
+		GetList() (*api.ListResponse, error)
+		GetByIndex(index string) (*ClassDetail, error)
 	}
 )
 
-func NewClassesClient(basicsProvider api.BasicsProvider) ClassesClient {
+func NewClient(basicsProvider api.BasicsProvider) ClassesClient {
 	return &classesClient{
 		basicsProvider: basicsProvider,
 	}
 }
 
-func (ac *classesClient) GetClassList() (*api.ListResponse, error) {
+func (ac *classesClient) GetList() (*api.ListResponse, error) {
 	return ac.basicsProvider.GetListForUrl(ClassEndpoint)
 }
 
-func (ac *classesClient) GetClassByIndex(index string) (*ClassDetail, error) {
+func (ac *classesClient) GetByIndex(index string) (*ClassDetail, error) {
 	result, err := ac.basicsProvider.ApiGet(ClassChildEndpoint + index)
 	if err != nil {
 		return nil, err

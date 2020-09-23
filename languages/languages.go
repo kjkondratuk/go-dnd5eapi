@@ -33,22 +33,22 @@ type (
 	}
 
 	LanguageClient interface {
-		GetLanguageList() (*api.ListResponse, error)
-		GetLanguageByIndex(index string) (*LanguageDetail, error)
+		GetList() (*api.ListResponse, error)
+		GetByIndex(index string) (*LanguageDetail, error)
 	}
 )
 
-func NewLanguagesClient(basicsProvider api.BasicsProvider) LanguageClient {
+func NewClient(basicsProvider api.BasicsProvider) LanguageClient {
 	return &languageClient{
 		basicsProvider: basicsProvider,
 	}
 }
 
-func (ac *languageClient) GetLanguageList() (*api.ListResponse, error) {
+func (ac *languageClient) GetList() (*api.ListResponse, error) {
 	return ac.basicsProvider.GetListForUrl(LanguagesEndpoint)
 }
 
-func (ac *languageClient) GetLanguageByIndex(index string) (*LanguageDetail, error) {
+func (ac *languageClient) GetByIndex(index string) (*LanguageDetail, error) {
 	result, err := ac.basicsProvider.ApiGet(LanguagesChildEndpoint + index)
 	if err != nil {
 		return nil, err

@@ -35,21 +35,21 @@ type (
 )
 
 type AbilityScoreClient interface {
-	GetAbilityScoreList() (*api.ListResponse, error)
-	GetAbilityScoreByIndex(index string) (*AbilityScoreDetail, error)
+	GetList() (*api.ListResponse, error)
+	GetByIndex(index string) (*AbilityScoreDetail, error)
 }
 
-func NewAbilityScoreClient(basicsProvider api.BasicsProvider) AbilityScoreClient {
+func NewClient(basicsProvider api.BasicsProvider) AbilityScoreClient {
 	return &abilityScoreClient{
 		basicsProvider: basicsProvider,
 	}
 }
 
-func (ac *abilityScoreClient) GetAbilityScoreList() (*api.ListResponse, error) {
+func (ac *abilityScoreClient) GetList() (*api.ListResponse, error) {
 	return ac.basicsProvider.GetListForUrl(AbilityScoreEndpoint)
 }
 
-func (ac *abilityScoreClient) GetAbilityScoreByIndex(index string) (*AbilityScoreDetail, error) {
+func (ac *abilityScoreClient) GetByIndex(index string) (*AbilityScoreDetail, error) {
 	result, err := ac.basicsProvider.ApiGet(AbilityScoreChildEndpoint + index)
 	if err != nil {
 		return nil, err

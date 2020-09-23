@@ -28,22 +28,22 @@ type (
 	}
 
 	ProficiencyClient interface {
-		GetProficiencyList() (*api.ListResponse, error)
-		GetProficiencyByIndex(index string) (*ProficiencyDetail, error)
+		GetList() (*api.ListResponse, error)
+		GetByIndex(index string) (*ProficiencyDetail, error)
 	}
 )
 
-func NewProficiencyClient(basicsProvider api.BasicsProvider) ProficiencyClient {
+func NewClient(basicsProvider api.BasicsProvider) ProficiencyClient {
 	return &proficiencyClient{
 		basicsProvider: basicsProvider,
 	}
 }
 
-func (ac *proficiencyClient) GetProficiencyList() (*api.ListResponse, error) {
+func (ac *proficiencyClient) GetList() (*api.ListResponse, error) {
 	return ac.basicsProvider.GetListForUrl(ProficienciesEndpoint)
 }
 
-func (ac *proficiencyClient) GetProficiencyByIndex(index string) (*ProficiencyDetail, error) {
+func (ac *proficiencyClient) GetByIndex(index string) (*ProficiencyDetail, error) {
 	result, err := ac.basicsProvider.ApiGet(ProficienciesChildEndpoint + index)
 	if err != nil {
 		return nil, err

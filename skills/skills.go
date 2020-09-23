@@ -26,22 +26,22 @@ type (
 	}
 
 	SkillClient interface {
-		GetSkillList() (*api.ListResponse, error)
-		GetSkillByIndex(index string) (*SkillDetail, error)
+		GetList() (*api.ListResponse, error)
+		GetByIndex(index string) (*SkillDetail, error)
 	}
 )
 
-func NewSkillClient(basicsProvider api.BasicsProvider) SkillClient {
+func NewClient(basicsProvider api.BasicsProvider) SkillClient {
 	return &skillClient{
 		basicsProvider: basicsProvider,
 	}
 }
 
-func (ac *skillClient) GetSkillList() (*api.ListResponse, error) {
+func (ac *skillClient) GetList() (*api.ListResponse, error) {
 	return ac.basicsProvider.GetListForUrl(SkillsEndpoint)
 }
 
-func (ac *skillClient) GetSkillByIndex(index string) (*SkillDetail, error) {
+func (ac *skillClient) GetByIndex(index string) (*SkillDetail, error) {
 	result, err := ac.basicsProvider.ApiGet(SkillsChildEndpoint + index)
 	if err != nil {
 		return nil, err

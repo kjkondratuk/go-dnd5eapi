@@ -13,17 +13,21 @@ import (
 
 var (
 	APIBaseURL = os.Getenv("API_ROOT")
-	Client     = NewLanguagesClient(api.NewBasicsProvider(&http.Client{}, APIBaseURL))
+	Client     = NewClient(api.NewBasicsProvider(&http.Client{}, APIBaseURL))
 )
 
-func TestRaces_GetLanguageList_IT(t *testing.T) {
-	_, err := Client.GetLanguageList()
+func TestMain(t *testing.M) {
+	t.Run()
+}
+
+func TestRaces_GetList_IT(t *testing.T) {
+	_, err := Client.GetList()
 	assert.Nil(t, err, "Should not receive an error contacting API.")
 	assert.True(t, true, "Should complete successfully!")
 }
 
-func TestRaces_GetLanguageByIndex_IT(t *testing.T) {
-	_, err := Client.GetLanguageByIndex("abyssal")
+func TestRaces_GetByIndex_IT(t *testing.T) {
+	_, err := Client.GetByIndex("abyssal")
 	assert.Nil(t, err, "Should not receive an error contacting API.")
 	assert.True(t, true, "Should complete successfully!")
 }
