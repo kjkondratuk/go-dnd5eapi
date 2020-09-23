@@ -1,10 +1,19 @@
 // +build integration
 
-package go_dnd5eapi
+package races
 
 import (
-	"github.com/stretchr/testify/assert"
+	"net/http"
+	"os"
 	"testing"
+
+	"github.com/kjkondratuk/go-dnd5eapi/api"
+	"github.com/stretchr/testify/assert"
+)
+
+var (
+	APIBaseURL = os.Getenv("API_ROOT")
+	Client     = NewRaceClient(api.NewBasicsProvider(&http.Client{}, APIBaseURL))
 )
 
 func TestRaces_GetRaceList_IT(t *testing.T) {

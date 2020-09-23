@@ -1,10 +1,19 @@
 // +build integration
 
-package go_dnd5eapi
+package classes
 
 import (
-	"github.com/stretchr/testify/assert"
+	"net/http"
+	"os"
 	"testing"
+
+	"github.com/kjkondratuk/go-dnd5eapi/api"
+	"github.com/stretchr/testify/assert"
+)
+
+var (
+	APIBaseURL = os.Getenv("API_ROOT")
+	Client     = NewClassesClient(api.NewBasicsProvider(&http.Client{}, APIBaseURL))
 )
 
 func TestClasses_GetClassByIndex_IT(t *testing.T) {

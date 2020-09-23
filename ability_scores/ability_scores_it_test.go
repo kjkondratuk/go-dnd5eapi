@@ -1,10 +1,19 @@
 // +build integration
 
-package go_dnd5eapi
+package ability_scores
 
 import (
-	"github.com/stretchr/testify/assert"
+	"net/http"
+	"os"
 	"testing"
+
+	"github.com/kjkondratuk/go-dnd5eapi/api"
+	"github.com/stretchr/testify/assert"
+)
+
+var (
+	APIBaseURL = os.Getenv("API_ROOT")
+	Client     = NewAbilityScoreClient(api.NewBasicsProvider(&http.Client{}, APIBaseURL))
 )
 
 // TODO: update integration tests with more targeted assertions than just "this completed without error"

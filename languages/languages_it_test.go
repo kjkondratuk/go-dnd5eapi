@@ -1,11 +1,19 @@
 // +build integration
 
-package go_dnd5eapi
+package languages
 
 import (
+	"net/http"
+	"os"
 	"testing"
 
+	"github.com/kjkondratuk/go-dnd5eapi/api"
 	"github.com/stretchr/testify/assert"
+)
+
+var (
+	APIBaseURL = os.Getenv("API_ROOT")
+	Client     = NewLanguagesClient(api.NewBasicsProvider(&http.Client{}, APIBaseURL))
 )
 
 func TestRaces_GetLanguageList_IT(t *testing.T) {

@@ -1,10 +1,19 @@
 // +build integration
 
-package go_dnd5eapi
+package endpoints
 
 import (
-	"github.com/stretchr/testify/assert"
+	"net/http"
+	"os"
 	"testing"
+
+	"github.com/kjkondratuk/go-dnd5eapi/api"
+	"github.com/stretchr/testify/assert"
+)
+
+var (
+	APIBaseURL = os.Getenv("API_ROOT")
+	Client     = NewEndpointsClient(api.NewBasicsProvider(&http.Client{}, APIBaseURL))
 )
 
 func TestEndpoints_GetEndpointList(t *testing.T) {

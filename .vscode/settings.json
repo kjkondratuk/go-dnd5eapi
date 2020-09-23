@@ -1,1 +1,13 @@
-{}
+{
+    "go.testEnvVars": {
+        "API_ROOT": "https://www.dnd5eapi.co/api"
+    },
+    "go.lintTool": "golangci-lint",
+    "go.testFlags": [
+        "-v"
+    ],
+    "go.testTags": [
+        "integration",
+        "unit"
+    ]
+}
