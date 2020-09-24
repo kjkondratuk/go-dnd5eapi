@@ -8,28 +8,22 @@ import (
 
 const (
 	// Endpoints for classes
-	ClassEndpoint      = "/classes"
-	ClassChildEndpoint = ClassEndpoint + "/"
+	Endpoint      = "/classes"
+	ChildEndpoint = Endpoint + "/"
 )
 
 type (
 	ClassDetail struct {
-		Index                 string              `json:"index"`
-		Name                  string              `json:"name"`
-		Url                   string              `json:"url"`
-		HitDie                int                 `json:"hit_die"`
-		ProficiencyChoices    []ProficiencyChoice `json:"proficiency_choices"`
-		Proficiencies         []api.APIRef        `json:"proficiencies"`
-		SavingThrows          []api.APIRef        `json:"saving_throws"`
-		StartingEquipmentLink string              `json:"starting_equipment"`
-		LevelsLink            string              `json:"class_levels"`
-		Subclasses            []api.APIRef        `json:"subclasses"`
-	}
-
-	ProficiencyChoice struct {
-		Choose int          `json:"choose"`
-		Type   string       `json:"type"`
-		From   []api.APIRef `json:"from"`
+		Index                 string          `json:"index"`
+		Name                  string          `json:"name"`
+		Url                   string          `json:"url"`
+		HitDie                int             `json:"hit_die"`
+		ProficiencyChoices    []api.APIChoice `json:"proficiency_choices"`
+		Proficiencies         []api.APIRef    `json:"proficiencies"`
+		SavingThrows          []api.APIRef    `json:"saving_throws"`
+		StartingEquipmentLink string          `json:"starting_equipment"`
+		LevelsLink            string          `json:"class_levels"`
+		Subclasses            []api.APIRef    `json:"subclasses"`
 	}
 
 	classesClient struct {
@@ -49,11 +43,11 @@ func NewClient(basicsProvider api.BasicsProvider) ClassesClient {
 }
 
 func (ac *classesClient) GetList() (*api.ListResponse, error) {
-	return ac.basicsProvider.GetListForUrl(ClassEndpoint)
+	return ac.basicsProvider.GetListForUrl(Endpoint)
 }
 
 func (ac *classesClient) GetByIndex(index string) (*ClassDetail, error) {
-	result, err := ac.basicsProvider.ApiGet(ClassChildEndpoint + index)
+	result, err := ac.basicsProvider.ApiGet(ChildEndpoint + index)
 	if err != nil {
 		return nil, err
 	}

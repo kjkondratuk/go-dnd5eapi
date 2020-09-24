@@ -8,8 +8,8 @@ import (
 
 const (
 	// Endpoints for languages
-	LanguagesEndpoint      = "/languages"
-	LanguagesChildEndpoint = LanguagesEndpoint + "/"
+	Endpoint      = "/languages"
+	ChildEndpoint = Endpoint + "/"
 )
 
 type (
@@ -45,11 +45,11 @@ func NewClient(basicsProvider api.BasicsProvider) LanguageClient {
 }
 
 func (ac *languageClient) GetList() (*api.ListResponse, error) {
-	return ac.basicsProvider.GetListForUrl(LanguagesEndpoint)
+	return ac.basicsProvider.GetListForUrl(Endpoint)
 }
 
 func (ac *languageClient) GetByIndex(index string) (*LanguageDetail, error) {
-	result, err := ac.basicsProvider.ApiGet(LanguagesChildEndpoint + index)
+	result, err := ac.basicsProvider.ApiGet(ChildEndpoint + index)
 	if err != nil {
 		return nil, err
 	}

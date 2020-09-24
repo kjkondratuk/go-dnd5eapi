@@ -1,0 +1,17 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="./... in go-dnd5eapi" type="GoTestRunConfiguration" factoryName="Go Test" nameIsGenerated="true">
+    <module name="go-dnd5eapi" />
+    <working_directory value="$PROJECT_DIR$" />
+    <useCustomBuildTags value="true" />
+    <envs>
+      <env name="API_ROOT" value="https://www.dnd5eapi.co/api" />
+    </envs>
+    <framework value="gotest" />
+    <kind value="DIRECTORY" />
+    <package value="github.com/kjkondratuk/go-dnd5eapi" />
+    <directory value="$PROJECT_DIR$/" />
+    <filePath value="$PROJECT_DIR$/" />
+    <pattern value="./..." />
+    <method v="2" />
+  </configuration>
+</component>

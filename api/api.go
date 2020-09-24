@@ -19,6 +19,19 @@ type (
 		Url   string `json:"url"`
 	}
 
+	APIDescription struct {
+		Index       string   `json:"index"`
+		Name        string   `json:"name"`
+		Url         string   `json:"url"`
+		Description []string `json:"desc"`
+	}
+
+	APIChoice struct {
+		Choose int      `json:"choose"`
+		Type   string   `json:"type"`
+		From   []APIRef `json:"from"`
+	}
+
 	basicsProvider struct {
 		client  *http.Client
 		baseUrl string

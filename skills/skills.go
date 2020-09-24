@@ -8,8 +8,8 @@ import (
 
 const (
 	// Endpoints for skills
-	SkillsEndpoint      = "/skills"
-	SkillsChildEndpoint = SkillsEndpoint + "/"
+	Endpoint      = "/skills"
+	ChildEndpoint = Endpoint + "/"
 )
 
 type (
@@ -38,11 +38,11 @@ func NewClient(basicsProvider api.BasicsProvider) SkillClient {
 }
 
 func (ac *skillClient) GetList() (*api.ListResponse, error) {
-	return ac.basicsProvider.GetListForUrl(SkillsEndpoint)
+	return ac.basicsProvider.GetListForUrl(Endpoint)
 }
 
 func (ac *skillClient) GetByIndex(index string) (*SkillDetail, error) {
-	result, err := ac.basicsProvider.ApiGet(SkillsChildEndpoint + index)
+	result, err := ac.basicsProvider.ApiGet(ChildEndpoint + index)
 	if err != nil {
 		return nil, err
 	}

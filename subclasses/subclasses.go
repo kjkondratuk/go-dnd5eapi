@@ -8,8 +8,8 @@ import (
 
 const (
 	// Endpoints for subclasses
-	SubclassesEndpoint     = "/subclasses"
-	SubclassesChildEnpoint = SubclassesEndpoint + "/"
+	Endpoint     = "/subclasses"
+	ChildEnpoint = Endpoint + "/"
 )
 
 type (
@@ -40,11 +40,11 @@ func NewClient(basicsProvider api.BasicsProvider) SubclassClient {
 }
 
 func (ac *subclassClient) GetList() (*api.ListResponse, error) {
-	return ac.basicsProvider.GetListForUrl(SubclassesEndpoint)
+	return ac.basicsProvider.GetListForUrl(Endpoint)
 }
 
 func (ac *subclassClient) GetByIndex(index string) (*SubclassDetail, error) {
-	result, err := ac.basicsProvider.ApiGet(SubclassesChildEnpoint + index)
+	result, err := ac.basicsProvider.ApiGet(ChildEnpoint + index)
 	if err != nil {
 		return nil, err
 	}

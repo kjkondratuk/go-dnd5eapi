@@ -15,27 +15,27 @@ import (
 type (
 	Client struct {
 		basicsProvider api.BasicsProvider
-		asc            ability_scores.AbilityScoreClient
-		cc             classes.ClassesClient
-		ec             endpoints.EndpointsClient
-		lc             languages.LanguageClient
-		pc             proficiencies.ProficiencyClient
-		rc             races.RaceClient
-		sc             skills.SkillClient
-		scc            subclasses.SubclassClient
+		AbilityScores  ability_scores.AbilityScoreClient
+		Classes        classes.ClassesClient
+		Endpoints      endpoints.EndpointsClient
+		Languages      languages.LanguageClient
+		Proficiencies  proficiencies.ProficiencyClient
+		Races          races.RaceClient
+		Skills         skills.SkillClient
+		Subclasses     subclasses.SubclassClient
 	}
 )
 
 func NewClient(basicsProvider api.BasicsProvider) *Client {
 	return &Client{
 		basicsProvider: basicsProvider,
-		asc:            ability_scores.NewClient(basicsProvider),
-		cc:             classes.NewClient(basicsProvider),
-		ec:             endpoints.NewClient(basicsProvider),
-		lc:             languages.NewClient(basicsProvider),
-		pc:             proficiencies.NewClient(basicsProvider),
-		rc:             races.NewClient(basicsProvider),
-		sc:             skills.NewClient(basicsProvider),
-		scc:            subclasses.NewClient(basicsProvider),
+		AbilityScores:  ability_scores.NewClient(basicsProvider),
+		Classes:        classes.NewClient(basicsProvider),
+		Endpoints:      endpoints.NewClient(basicsProvider),
+		Languages:      languages.NewClient(basicsProvider),
+		Proficiencies:  proficiencies.NewClient(basicsProvider),
+		Races:          races.NewClient(basicsProvider),
+		Skills:         skills.NewClient(basicsProvider),
+		Subclasses:     subclasses.NewClient(basicsProvider),
 	}
 }
