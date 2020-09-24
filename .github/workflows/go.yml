@@ -30,4 +30,4 @@ jobs:
       run: go build -v .
 
     - name: Test
-      run: go test -v .
+      run: API_ROOT='https://www.dnd5eapi.co/api' go test -v -tags 'integration unit' ./...
