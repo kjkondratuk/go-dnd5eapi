@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	// Endpoints for equipment
+	// Endpoints for equipment categories
 	Endpoint      = "/equipment-categories"
 	ChildEndpoint = Endpoint + "/"
 )
