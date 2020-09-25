@@ -32,25 +32,25 @@ client := godnd5eapi.NewApiClient("<Base URL Here>", godnd5eapi.WithHttpClient(m
 | ability-scores | - | X | - |
 | classes | - | X | - |
 | classes-proficiency-rel | - | X | - |
+| damage-types | - | X | - |
+| equipment | - | X | - |
 | languages | - | X | - |
 | proficiencies | - | X | - |
 | races | - | X | - |
 | skills | - | X | - |
 | skill-ability-rel | - | X | - |
 | subclasses | - | X | - |
-| subraces | - | X | - |
 | traits | - | X | - |
 | ------------------------------- | --- | --- | --- |
 | conditions | - | - | - |
-| damage-types | - | - | - |
 | equipment-categories | - | - | - |
-| equipment | - | - | - |
 | features | - | - | - |
 | magic-schools | - | - | - |
 | monsters | - | - | - |
 | spellcasting | - | - | - |
 | spells | - | - | - |
 | starting-equipment | - | - | - |
+| subraces | - | - | - |
 | weapon-properties | - | - | - |
 
 
