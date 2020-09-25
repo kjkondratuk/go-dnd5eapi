@@ -19,18 +19,18 @@ type (
 		Age                   string                        `json:"age"`
 		Size                  string                        `json:"size"`
 		SizeDescription       string                        `json:"size_description"`
-		StartingProficiencies []api.APIRef                  `json:"starting_proficiencies"`
-		Languages             []api.APIRef                  `json:"languages"`
+		StartingProficiencies []api.Ref                     `json:"starting_proficiencies"`
+		Languages             []api.Ref                     `json:"languages"`
 		LanguageDescription   string                        `json:"language_desc"`
-		Traits                []api.APIRef                  `json:"traits"`
+		Traits                []api.Ref                     `json:"traits"`
 		TraitOptions          []TraitChoice                 `json:"trait_options"`
-		Subraces              []api.APIRef                  `json:"subraces"`
+		Subraces              []api.Ref                     `json:"subraces"`
 	}
 
 	TraitChoice struct {
-		Choose int          `json:"choose"`
-		Type   string       `json:"type"`
-		From   []api.APIRef `json:"from"`
+		Choose int       `json:"choose"`
+		Type   string    `json:"type"`
+		From   []api.Ref `json:"from"`
 	}
 
 	raceClient struct {

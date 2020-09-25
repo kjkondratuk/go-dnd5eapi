@@ -14,13 +14,13 @@ const (
 
 type (
 	ProficiencyDetail struct {
-		Index      string       `json:"index"`
-		Name       string       `json:"name"`
-		Url        string       `json:"url"`
-		Type       string       `json:"type"`
-		Classes    []api.APIRef `json:"classes"`
-		Races      []api.APIRef `json:"races"`
-		References []api.APIRef `json:"references"`
+		Index      string    `json:"index"`
+		Name       string    `json:"name"`
+		Url        string    `json:"url"`
+		Type       string    `json:"type"`
+		Classes    []api.Ref `json:"classes"`
+		Races      []api.Ref `json:"races"`
+		References []api.Ref `json:"references"`
 	}
 
 	proficiencyClient struct {

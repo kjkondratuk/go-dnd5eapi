@@ -10,26 +10,36 @@ import (
 type (
 	ListResponse struct {
 		Count   int `json:"count"`
-		Results []APIRef
+		Results []Ref
 	}
 
-	APIRef struct {
+	Ref struct {
 		Index string `json:"index"`
 		Name  string `json:"name"`
 		Url   string `json:"url"`
 	}
 
-	APIDescription struct {
+	Description struct {
 		Index       string   `json:"index"`
 		Name        string   `json:"name"`
 		Url         string   `json:"url"`
 		Description []string `json:"desc"`
 	}
 
-	APIChoice struct {
-		Choose int      `json:"choose"`
-		Type   string   `json:"type"`
-		From   []APIRef `json:"from"`
+	Range struct {
+		Normal int
+		Long   int
+	}
+
+	Cost struct {
+		Quantity int
+		Unit     string
+	}
+
+	Choice struct {
+		Choose int    `json:"choose"`
+		Type   string `json:"type"`
+		From   []Ref  `json:"from"`
 	}
 
 	basicsProvider struct {

@@ -14,9 +14,9 @@ const (
 
 type (
 	LanguageChoice struct {
-		Choose int          `json:"choose"`
-		Type   string       `json:"type"`
-		From   []api.APIRef `json:"from"`
+		Choose int       `json:"choose"`
+		Type   string    `json:"type"`
+		From   []api.Ref `json:"from"`
 	}
 
 	LanguageDetail struct {

@@ -14,11 +14,11 @@ const (
 
 type (
 	SkillDetail struct {
-		Index        string     `json:"index"`
-		Name         string     `json:"name"`
-		Url          string     `json:"url"`
-		Description  []string   `json:"desc"`
-		AbilityScore api.APIRef `json:"ability_score"`
+		Index        string   `json:"index"`
+		Name         string   `json:"name"`
+		Url          string   `json:"url"`
+		Description  []string `json:"desc"`
+		AbilityScore api.Ref  `json:"ability_score"`
 	}
 
 	skillClient struct {

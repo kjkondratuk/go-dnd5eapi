@@ -14,12 +14,12 @@ const (
 
 type (
 	AbilityScoreDetail struct {
-		Index       string       `json:"index"`
-		Name        string       `json:"name"`
-		Url         string       `json:"url"`
-		FullName    string       `json:"full_name"`
-		Description []string     `json:"desc"`
-		Skills      []api.APIRef `json:"skills"`
+		Index       string    `json:"index"`
+		Name        string    `json:"name"`
+		Url         string    `json:"url"`
+		FullName    string    `json:"full_name"`
+		Description []string  `json:"desc"`
+		Skills      []api.Ref `json:"skills"`
 	}
 
 	AbilityBonus struct {

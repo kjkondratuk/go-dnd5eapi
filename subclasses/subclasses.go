@@ -14,13 +14,13 @@ const (
 
 type (
 	SubclassDetail struct {
-		Index       string     `json:"index"`
-		Name        string     `json:"name"`
-		Url         string     `json:"url"`
-		FlavorText  string     `json:"subclass_flavor"`
-		Description []string   `json:"desc"`
-		Class       api.APIRef `json:"class"`
-		LevelsLink  string     `json:"subclass_levels"`
+		Index       string   `json:"index"`
+		Name        string   `json:"name"`
+		Url         string   `json:"url"`
+		FlavorText  string   `json:"subclass_flavor"`
+		Description []string `json:"desc"`
+		Class       api.Ref  `json:"class"`
+		LevelsLink  string   `json:"subclass_levels"`
 	}
 
 	subclassClient struct {

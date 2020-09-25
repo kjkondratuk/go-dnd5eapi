@@ -19,7 +19,7 @@ type (
 
 	DamageTypeClient interface {
 		GetList() (*api.ListResponse, error)
-		GetByIndex(index string) (*api.APIDescription, error)
+		GetByIndex(index string) (*api.Description, error)
 	}
 )
 
@@ -33,13 +33,13 @@ func (ac *damageTypeClient) GetList() (*api.ListResponse, error) {
 	return ac.basicsProvider.GetListForUrl(Endpoint)
 }
 
-func (ac *damageTypeClient) GetByIndex(index string) (*api.APIDescription, error) {
+func (ac *damageTypeClient) GetByIndex(index string) (*api.Description, error) {
 	result, err := ac.basicsProvider.ApiGet(ChildEndpoint + index)
 	if err != nil {
 		return nil, err
 	}
 
-	d := api.APIDescription{}
+	d := api.Description{}
 	err = json.Unmarshal(result, &d)
 	if err != nil {
 		return nil, err
