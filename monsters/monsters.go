@@ -40,12 +40,36 @@ type (
 		Languages             string             `json:"languages"`
 		ChallengeRating       int                `json:"challenge_rating"`
 		SpecialAbilities      []SpecialAbility   `json:"special_abilities"`
+		Actions               []Action           `json:"actions"`
+		LegendaryActions      []Action           `json:"legendary_actions"`
+	}
+
+	Action struct {
+		Name        string     `json:"name"`
+		Description string     `json:"desc"`
+		Options     api.Choice `json:"options"`
+		AttackBonus *int       `json:"attack_bonus,omitempty"`
+		DC          *DC        `json:"dc,omitempty"`
+		Usage       *Usage     `json:"usage,omitempty"`
+		Damage      []Damage   `json:"damage"`
+	}
+
+	Damage struct {
+		Type api.Ref `json:"damage_type"`
+		Dice string  `json:"damage_dice"`
 	}
 
 	SpecialAbility struct {
-		Name        string          `json:"name"`
-		Description api.Description `json:"desc"`
-		Usage       Usage           `json:"usage"`
+		Name        string `json:"name"`
+		Description string `json:"desc"`
+		Usage       *Usage `json:"usage,omitempty"`
+		DC          *DC    `json:"dc, omitempty"`
+	}
+
+	DC struct {
+		Type        api.Ref `json:"dc_type"`
+		Value       int     `json:"dc_value"`
+		SuccessType string  `json:"success_type"`
 	}
 
 	Usage struct {
@@ -56,7 +80,7 @@ type (
 	Sense struct {
 		Blindsight        string `json:"blindsight"`
 		Darkvision        string `json:"darkvision"`
-		PassivePerception string `json:"passive_perception"`
+		PassivePerception int    `json:"passive_perception"`
 	}
 
 	ProficiencyValue struct {

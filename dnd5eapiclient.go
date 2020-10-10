@@ -23,7 +23,7 @@ type (
 	Client struct {
 		basicsProvider    api.BasicsProvider
 		AbilityScores     ability_scores.AbilityScoreClient
-		Classes           classes.ClassesClient
+		Classes           classes.ClassClient
 		ClassProficencies classes_proficiency_rel.ClassProficiencyRelClient
 		Conditions        conditions.ConditionClient
 		Damage            damage.DamageTypeClient

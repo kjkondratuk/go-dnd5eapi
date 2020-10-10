@@ -9,7 +9,7 @@ import (
 
 type (
 	classProficiencyRelClient struct {
-		cc classes.ClassesClient
+		cc classes.ClassClient
 		pc proficiencies.ProficiencyClient
 	}
 
@@ -19,7 +19,7 @@ type (
 	}
 )
 
-func NewClient(cc classes.ClassesClient, pc proficiencies.ProficiencyClient) ClassProficiencyRelClient {
+func NewClient(cc classes.ClassClient, pc proficiencies.ProficiencyClient) ClassProficiencyRelClient {
 	return &classProficiencyRelClient{
 		cc: cc,
 		pc: pc,

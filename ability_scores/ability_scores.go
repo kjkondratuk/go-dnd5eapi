@@ -1,15 +1,9 @@
+//go:generate go run ../gen/api_gen.go ability_scores AbilityScore "\"CHA\""
+
 package ability_scores
 
 import (
-	"encoding/json"
-
 	"github.com/kjkondratuk/go-dnd5eapi/api"
-)
-
-const (
-	// Endpoints for ability scores
-	AbilityScoreEndpoint      = "/ability-scores"
-	AbilityScoreChildEndpoint = AbilityScoreEndpoint + "/"
 )
 
 type (
@@ -28,37 +22,4 @@ type (
 		Url   string `json:"url"`
 		Bonus int    `json:"bonus"`
 	}
-
-	abilityScoreClient struct {
-		basicsProvider api.BasicsProvider
-	}
 )
-
-type AbilityScoreClient interface {
-	GetList() (*api.ListResponse, error)
-	GetByIndex(index string) (*AbilityScoreDetail, error)
-}
-
-func NewClient(basicsProvider api.BasicsProvider) AbilityScoreClient {
-	return &abilityScoreClient{
-		basicsProvider: basicsProvider,
-	}
-}
-
-func (ac *abilityScoreClient) GetList() (*api.ListResponse, error) {
-	return ac.basicsProvider.GetListForUrl(AbilityScoreEndpoint)
-}
-
-func (ac *abilityScoreClient) GetByIndex(index string) (*AbilityScoreDetail, error) {
-	result, err := ac.basicsProvider.ApiGet(AbilityScoreChildEndpoint + index)
-	if err != nil {
-		return nil, err
-	}
-
-	d := AbilityScoreDetail{}
-	err = json.Unmarshal(result, &d)
-	if err != nil {
-		return nil, err
-	}
-	return &d, nil
-}
