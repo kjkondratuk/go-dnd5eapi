@@ -13,7 +13,8 @@ import (
 func main() {
 	packageNameString := os.Args[1]
 	apiName := os.Args[2]
-	testInput := os.Args[3]
+	apiClass := os.Args[3]
+	testInput := os.Args[4]
 	lcApiName := strings.ToLower(string(apiName[0])) + string(apiName[1:])
 	log.Println("Generating with template: " + packageNameString + " - " + apiName)
 
@@ -21,12 +22,14 @@ func main() {
 		PackageName string
 		Endpoint    string
 		ApiName     string
+		ApiClass    string
 		LCApiName   string
 		TestInput   string
 	}{
 		packageNameString,
 		strings.ReplaceAll(packageNameString, "_", "-"),
 		apiName,
+		apiClass,
 		lcApiName,
 		testInput,
 	}

@@ -3,6 +3,7 @@
 // Endpoint: {{.Endpoint}}
 // API Name: {{.ApiName}}
 // LC API Name: {{.LCApiName}}
+// API Class: {{.ApiClass}}
 
 package {{.PackageName}}
 
@@ -26,7 +27,7 @@ type (
 
 type {{.ApiName}}Client interface {
 	GetList() (*api.ListResponse, error)
-	GetByIndex(index string) (*{{.ApiName}}Detail, error)
+	GetByIndex(index string) (*{{.ApiClass}}, error)
 }
 
 func NewClient(basicsProvider api.BasicsProvider) {{.ApiName}}Client {
@@ -39,13 +40,13 @@ func (ac *{{.LCApiName}}Client) GetList() (*api.ListResponse, error) {
 	return ac.basicsProvider.GetListForUrl(Endpoint)
 }
 
-func (ac *{{.LCApiName}}Client) GetByIndex(index string) (*{{.ApiName}}Detail, error) {
+func (ac *{{.LCApiName}}Client) GetByIndex(index string) (*{{.ApiClass}}, error) {
 	result, err := ac.basicsProvider.ApiGet(ChildEndpoint + index)
 	if err != nil {
 		return nil, err
 	}
 
-	d := {{.ApiName}}Detail{}
+	d := {{.ApiClass}}{}
 	err = json.Unmarshal(result, &d)
 	if err != nil {
 		return nil, err

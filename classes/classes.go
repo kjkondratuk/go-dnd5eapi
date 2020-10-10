@@ -1,4 +1,4 @@
-//go:generate go run ../gen/api_gen.go classes Class "\"Bard\""
+//go:generate go run ../gen/api_gen.go classes Class ClassDetail "\"Bard\""
 
 package classes
 

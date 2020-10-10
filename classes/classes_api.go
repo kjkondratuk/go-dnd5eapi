@@ -3,6 +3,7 @@
 // Endpoint: classes
 // API Name: Class
 // LC API Name: class
+// API Class: ClassDetail
 
 package classes
 
