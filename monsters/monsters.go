@@ -63,7 +63,7 @@ type (
 		Name        string `json:"name"`
 		Description string `json:"desc"`
 		Usage       *Usage `json:"usage,omitempty"`
-		DC          *DC    `json:"dc, omitempty"`
+		DC          *DC    `json:"dc,omitempty"`
 	}
 
 	DC struct {
