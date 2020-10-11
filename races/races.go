@@ -1,11 +1,10 @@
+//go:generate go run ../gen/api_gen.go ../gen races Race RaceDetail "\"dragonborn\""
+
 package races
 
 import (
-	"encoding/json"
-
 	"github.com/kjkondratuk/go-dnd5eapi/ability_scores"
 	"github.com/kjkondratuk/go-dnd5eapi/api"
-	"github.com/kjkondratuk/go-dnd5eapi/constants"
 )
 
 type (
@@ -23,7 +22,7 @@ type (
 		Languages             []api.Ref                     `json:"languages"`
 		LanguageDescription   string                        `json:"language_desc"`
 		Traits                []api.Ref                     `json:"traits"`
-		TraitOptions          []TraitChoice                 `json:"trait_options"`
+		TraitOptions          TraitChoice                   `json:"trait_options"`
 		Subraces              []api.Ref                     `json:"subraces"`
 	}
 
@@ -32,37 +31,4 @@ type (
 		Type   string    `json:"type"`
 		From   []api.Ref `json:"from"`
 	}
-
-	raceClient struct {
-		basicsProvider api.BasicsProvider
-	}
-
-	RaceClient interface {
-		GetList() (*api.ListResponse, error)
-		GetByIndex(index string) (*RaceDetail, error)
-	}
 )
-
-func NewClient(basicsProvider api.BasicsProvider) RaceClient {
-	return &raceClient{
-		basicsProvider: basicsProvider,
-	}
-}
-
-func (ac *raceClient) GetList() (*api.ListResponse, error) {
-	return ac.basicsProvider.GetListForUrl(constants.RacesEndpoint)
-}
-
-func (ac *raceClient) GetByIndex(index string) (*RaceDetail, error) {
-	result, err := ac.basicsProvider.ApiGet(constants.RacesChildEndpoint + index)
-	if err != nil {
-		return nil, err
-	}
-
-	d := RaceDetail{}
-	err = json.Unmarshal(result, &d)
-	if err != nil {
-		return nil, err
-	}
-	return &d, nil
-}

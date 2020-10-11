@@ -11,10 +11,11 @@ import (
 )
 
 func main() {
-	packageNameString := os.Args[1]
-	apiName := os.Args[2]
-	apiClass := os.Args[3]
-	testInput := os.Args[4]
+	templateRoot := os.Args[1]
+	packageNameString := os.Args[2]
+	apiName := os.Args[3]
+	apiClass := os.Args[4]
+	testInput := os.Args[5]
 	lcApiName := strings.ToLower(string(apiName[0])) + string(apiName[1:])
 	log.Println("Generating with template: " + packageNameString + " - " + apiName)
 
@@ -34,7 +35,7 @@ func main() {
 		testInput,
 	}
 
-	templateStr, err := ioutil.ReadFile("../gen/api_template.tpl")
+	templateStr, err := ioutil.ReadFile(templateRoot + "/api_template.tpl")
 	apiFile := template.Must(template.New("").Parse(string(templateStr)))
 
 	f, err := os.Create(packageNameString + "_api.go")
@@ -44,7 +45,7 @@ func main() {
 	}
 	apiFile.Execute(f, params)
 
-	testTemplateStr, err := ioutil.ReadFile("../gen/api_template_test.tpl")
+	testTemplateStr, err := ioutil.ReadFile(templateRoot + "/api_template_test.tpl")
 	testFile := template.Must(template.New("").Parse(string(testTemplateStr)))
 
 	tf, err := os.Create(packageNameString + "_api_test.go")

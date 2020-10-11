@@ -1,9 +1,11 @@
+//go:generate go run ../gen/api_gen.go ../gen traits Trait TraitDetail "\"brave\""
+
 package traits
 
 import "github.com/kjkondratuk/go-dnd5eapi/api"
 
 type (
-	Trait struct {
+	TraitDetail struct {
 		Index    string    `json:"index"`
 		Name     string    `json:"name"`
 		Url      string    `json:"url"`
