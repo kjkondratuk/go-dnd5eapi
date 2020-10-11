@@ -9,6 +9,9 @@
 package {{.PackageName}}
 
 import (
+    "encoding/json"
+    "fmt"
+    "log"
 	"net/http"
 	"os"
 	"testing"
@@ -27,13 +30,17 @@ func TestMain(t *testing.M) {
 }
 
 func Test{{.ApiName}}_GetList_IT(t *testing.T) {
-	_, err := Client.GetList()
+	resp, err := Client.GetList()
+	r, _ := json.Marshal(resp)
+	log.Print(fmt.Sprintf("Response: %s", r))
 	assert.Nil(t, err, "Should not receive an error contacting API.")
 	assert.True(t, true, "Should complete successfully!")
 }
 
 func Test{{.ApiName}}_GetByIndex_IT(t *testing.T) {
-	_, err := Client.GetByIndex({{.TestInput}})
+	resp, err := Client.GetByIndex({{.TestInput}})
+	r, _ := json.Marshal(resp)
+	log.Print(fmt.Sprintf("Response: %s", r))
 	assert.Nil(t, err, "Should not receive an error contacting API.")
 	assert.True(t, true, "Should complete successfully!")
 }

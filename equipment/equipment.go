@@ -16,7 +16,7 @@ type (
 		WeaponRange       string       `json:"weapon_range"`
 		CategoryRange     string       `json:"category_range"`
 		Cost              api.Cost     `json:"cost"`
-		Damage            DamageDetail `json:"damage"`
+		Damage            DamageDetail `json:"damage_types"`
 		Range             api.Range    `json:"range"`
 		Weight            int          `json:"weight"`
 		Properties        []api.Ref    `json:"properties"`

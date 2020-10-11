@@ -1,6 +1,6 @@
-//go:generate go run ../../gen/api_gen.go ../../gen categories Category CategoryDetail "\"shields\""
+//go:generate go run ../../gen/api_gen.go ../../gen equipment_categories Category CategoryDetail "\"shields\""
 
-package categories
+package equipment_categories
 
 import (
 	"github.com/kjkondratuk/go-dnd5eapi/api"

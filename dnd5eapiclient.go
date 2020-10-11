@@ -6,7 +6,7 @@ import (
 	"github.com/kjkondratuk/go-dnd5eapi/classes"
 	classes_proficiency_rel "github.com/kjkondratuk/go-dnd5eapi/classes_proficiencies_rel"
 	"github.com/kjkondratuk/go-dnd5eapi/conditions"
-	"github.com/kjkondratuk/go-dnd5eapi/damage"
+	"github.com/kjkondratuk/go-dnd5eapi/damage_types"
 	"github.com/kjkondratuk/go-dnd5eapi/endpoints"
 	"github.com/kjkondratuk/go-dnd5eapi/equipment"
 	"github.com/kjkondratuk/go-dnd5eapi/features"
@@ -27,7 +27,7 @@ type (
 		Classes            classes.ClassClient
 		ClassProficiencies classes_proficiency_rel.ClassProficiencyRelClient
 		Conditions         conditions.ConditionClient
-		Damage             damage.DamageTypeClient
+		Damage             damage_types.DamageTypeClient
 		Endpoints          endpoints.EndpointsClient
 		Equipment          equipment.EquipmentClient
 		Features           features.FeatureClient
@@ -49,7 +49,7 @@ func NewClient(basicsProvider api.BasicsProvider) *Client {
 		Classes:            classes.NewClient(basicsProvider),
 		ClassProficiencies: nil,
 		Conditions:         conditions.NewClient(basicsProvider),
-		Damage:             damage.NewClient(basicsProvider),
+		Damage:             damage_types.NewClient(basicsProvider),
 		Endpoints:          endpoints.NewClient(basicsProvider),
 		Equipment:          equipment.NewClient(basicsProvider),
 		Features:           features.NewClient(basicsProvider),

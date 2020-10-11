@@ -15,7 +15,6 @@ type (
 
 	ClassProficiencyRelClient interface {
 		GetProficienciesForClassByIndex(classIndex string) ([]proficiencies.ProficiencyDetail, error)
-		GetProficiencyChoicesForClassByIndex(classIndex string) (map[string][]proficiencies.ProficiencyDetail, error)
 	}
 )
 
@@ -43,31 +42,6 @@ func (ac *classProficiencyRelClient) GetProficienciesForClassByIndex(classIndex 
 		} else {
 			return nil, errors.New("No proficiency called " + v.Index + " could be found")
 		}
-	}
-	return result, nil
-}
-
-func (ac *classProficiencyRelClient) GetProficiencyChoicesForClassByIndex(classIndex string) (map[string][]proficiencies.ProficiencyDetail, error) {
-	class, err := ac.cc.GetByIndex(classIndex)
-	if err != nil {
-		return nil, err
-	}
-
-	var result = make(map[string][]proficiencies.ProficiencyDetail)
-	for i, choice := range class.ProficiencyChoices {
-		var profs []proficiencies.ProficiencyDetail
-		for _, prof := range class.ProficiencyChoices[i].From {
-			p, err := ac.pc.GetByIndex(prof.Index)
-			if err != nil {
-				return nil, err
-			}
-			if p != nil {
-				profs = append(profs, *p)
-			} else {
-				return nil, errors.New("No proficiency called " + prof.Index + " could be found")
-			}
-		}
-		result[choice.Type] = profs
 	}
 	return result, nil
 }

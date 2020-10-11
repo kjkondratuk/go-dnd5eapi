@@ -1,15 +1,9 @@
+//go:generate go run ../gen/api_gen.go ../gen monsters Monster MonsterDetail "\"aboleth\""
+
 package monsters
 
 import (
-	"encoding/json"
-
 	"github.com/kjkondratuk/go-dnd5eapi/api"
-)
-
-const (
-	// Endpoints for monsters
-	Endpoint      = "/monsters"
-	ChildEndpoint = Endpoint + "/"
 )
 
 type (
@@ -51,7 +45,7 @@ type (
 		AttackBonus *int       `json:"attack_bonus,omitempty"`
 		DC          *DC        `json:"dc,omitempty"`
 		Usage       *Usage     `json:"usage,omitempty"`
-		Damage      []Damage   `json:"damage"`
+		Damage      []Damage   `json:"damage_types"`
 	}
 
 	Damage struct {
@@ -93,37 +87,4 @@ type (
 		Climb string `json:"climb"`
 		Fly   string `json:"fly"`
 	}
-
-	monsterClient struct {
-		basicsProvider api.BasicsProvider
-	}
-
-	MonsterClient interface {
-		GetList() (*api.ListResponse, error)
-		GetByIndex(index string) (*MonsterDetail, error)
-	}
 )
-
-func NewClient(basicsProvider api.BasicsProvider) MonsterClient {
-	return &monsterClient{
-		basicsProvider: basicsProvider,
-	}
-}
-
-func (ac *monsterClient) GetList() (*api.ListResponse, error) {
-	return ac.basicsProvider.GetListForUrl(Endpoint)
-}
-
-func (ac *monsterClient) GetByIndex(index string) (*MonsterDetail, error) {
-	result, err := ac.basicsProvider.ApiGet(ChildEndpoint + index)
-	if err != nil {
-		return nil, err
-	}
-
-	d := MonsterDetail{}
-	err = json.Unmarshal(result, &d)
-	if err != nil {
-		return nil, err
-	}
-	return &d, nil
-}

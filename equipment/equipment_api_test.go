@@ -9,6 +9,9 @@
 package equipment
 
 import (
+    "encoding/json"
+    "fmt"
+    "log"
 	"net/http"
 	"os"
 	"testing"
@@ -27,13 +30,17 @@ func TestMain(t *testing.M) {
 }
 
 func TestEquipment_GetList_IT(t *testing.T) {
-	_, err := Client.GetList()
+	resp, err := Client.GetList()
+	r, _ := json.Marshal(resp)
+	log.Print(fmt.Sprintf("Response: %s", r))
 	assert.Nil(t, err, "Should not receive an error contacting API.")
 	assert.True(t, true, "Should complete successfully!")
 }
 
 func TestEquipment_GetByIndex_IT(t *testing.T) {
-	_, err := Client.GetByIndex("abacus")
+	resp, err := Client.GetByIndex("abacus")
+	r, _ := json.Marshal(resp)
+	log.Print(fmt.Sprintf("Response: %s", r))
 	assert.Nil(t, err, "Should not receive an error contacting API.")
 	assert.True(t, true, "Should complete successfully!")
 }

@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 
 	"github.com/kjkondratuk/go-dnd5eapi/api"
-	"github.com/kjkondratuk/go-dnd5eapi/constants"
 )
 
 type (
@@ -26,7 +25,7 @@ func NewClient(basicsProvider api.BasicsProvider) EndpointsClient {
 }
 
 func (ac *endpointsClient) GetList() (*EndpointResponse, error) {
-	result, err := ac.basicsProvider.ApiGet(constants.RootEndpoint)
+	result, err := ac.basicsProvider.ApiGet("/")
 	if err != nil {
 		return nil, err
 	}

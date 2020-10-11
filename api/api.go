@@ -20,9 +20,9 @@ type (
 	}
 
 	Description struct {
-		Index       string   `json:"index"`
+		Index       *string  `json:"index"`
 		Name        string   `json:"name"`
-		Url         string   `json:"url"`
+		Url         *string  `json:"url"`
 		Description []string `json:"desc"`
 	}
 
@@ -37,9 +37,9 @@ type (
 	}
 
 	Choice struct {
-		Choose int    `json:"choose"`
-		Type   string `json:"type"`
-		From   []Ref  `json:"from"`
+		Choose int           `json:"choose"`
+		Type   string        `json:"type"`
+		From   []interface{} `json:"from"`
 	}
 
 	basicsProvider struct {
