@@ -25,5 +25,8 @@ jobs:
     - name: Generate code
       run: make generate FLAGS=-v
 
+    - name: Debug
+      run: pwd && echo $GOPATH && echo $GOROOT
+
     - name: Test
       run: API_ROOT='https://www.dnd5eapi.co/api' go test -v -tags 'integration unit' ./...
