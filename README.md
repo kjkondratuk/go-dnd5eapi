@@ -1,5 +1,7 @@
 # go-dnd5eapi
 
+![Go](https://github.com/kjkondratuk/go-dnd5eapi/workflows/Go/badge.svg)
+
 A go client for interacting with the [dnd5eapi](https://www.dnd5eapi.co/).  This is a first-pass at a go client with minimal dependencies, so there will likely be plenty of bugs at this stage--PRs are welcome.
 
 ## Install
