@@ -8,3 +8,6 @@ integration-test:
 
 generate:
 	$(GO) generate $(FLAGS) ./...
+
+run-examples:
+	$(GO) run ./examples/...

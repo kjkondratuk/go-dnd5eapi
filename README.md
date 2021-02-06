@@ -22,3 +22,6 @@ myCustomClient := &http.Client{
 client := godnd5eapi.NewApiClient("<Base URL Here>", godnd5eapi.WithHttpClient(myCustomClient))
 ```
 
+## Sample Calls
+
+Check out the examples in the `examples` folder!
