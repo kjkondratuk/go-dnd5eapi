@@ -1,4 +1,4 @@
-//go:generate go run ../gen/api_gen.go subclasses Subclass "\"berserker\""
+//go:generate go run ../gen/api_gen.go Subclass "\"berserker\""
 
 package subclasses
 

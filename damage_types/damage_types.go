@@ -1,4 +1,4 @@
-//go:generate go run ../gen/api_gen.go damage_types DamageType "\"lightning\""
+//go:generate go run ../gen/api_gen.go DamageType "\"lightning\""
 
 package damage_types
 

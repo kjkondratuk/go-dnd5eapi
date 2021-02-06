@@ -1,4 +1,4 @@
-//go:generate go run ../gen/api_gen.go spells Spell "\"acid-arrow\""
+//go:generate go run ../gen/api_gen.go Spell "\"acid-arrow\""
 
 package spells
 

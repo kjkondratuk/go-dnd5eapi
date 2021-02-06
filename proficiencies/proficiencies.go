@@ -1,4 +1,4 @@
-//go:generate go run ../gen/api_gen.go proficiencies Proficiency "\"battleaxes\""
+//go:generate go run ../gen/api_gen.go Proficiency "\"battleaxes\""
 
 package proficiencies
 

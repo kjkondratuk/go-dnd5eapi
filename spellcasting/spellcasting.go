@@ -1,4 +1,4 @@
-//go:generate go run ../gen/api_gen.go spellcasting Spellcasting "\"bard\""
+//go:generate go run ../gen/api_gen.go Spellcasting "\"bard\""
 
 package spellcasting
 

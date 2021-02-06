@@ -1,4 +1,4 @@
-//go:generate go run ../gen/api_gen.go races Race "\"dragonborn\""
+//go:generate go run ../gen/api_gen.go Race "\"dragonborn\""
 
 package races
 

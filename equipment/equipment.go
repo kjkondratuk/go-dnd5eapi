@@ -1,4 +1,4 @@
-//go:generate go run ../gen/api_gen.go equipment Equipment "\"abacus\""
+//go:generate go run ../gen/api_gen.go Equipment "\"abacus\""
 
 package equipment
 

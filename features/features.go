@@ -1,4 +1,4 @@
-//go:generate go run ../gen/api_gen.go features Feature "\"arcane-tradition\""
+//go:generate go run ../gen/api_gen.go Feature "\"arcane-tradition\""
 
 package features
 

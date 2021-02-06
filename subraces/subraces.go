@@ -1,4 +1,4 @@
-//go:generate go run ../gen/api_gen.go subraces Subrace "\"high-elf\""
+//go:generate go run ../gen/api_gen.go Subrace "\"high-elf\""
 
 package subraces
 

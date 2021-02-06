@@ -13,11 +13,20 @@ import (
 
 func main() {
 	// templateRoot := os.Args[1]
+	// Arch: %s OS: %s Line: %s Dollar: %s
+	log.Printf("File: %s Package: %s",
+		// os.Getenv("GOARCH"),
+		// os.Getenv("GOOS"),
+		os.Getenv("GOFILE"),
+		// os.Getenv("GOLINE"),
+		os.Getenv("GOPACKAGE"),
+		// os.Getenv("DOLLAR"),
+	)
 	templateRoot := path.Join(os.Getenv("GOPATH"), "src/github.com/kjkondratuk/go-dnd5eapi/gen")
-	packageNameString := os.Args[1]
-	apiName := os.Args[2]
+	packageNameString := os.Getenv("GOPACKAGE")
+	apiName := os.Args[1]
 	apiClass := apiName + "Detail"
-	testInput := os.Args[3]
+	testInput := os.Args[2]
 	lcApiName := strings.ToLower(string(apiName[0])) + string(apiName[1:])
 	log.Println("Generating with template: " + packageNameString + " - " + apiName)
 

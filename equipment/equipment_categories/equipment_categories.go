@@ -1,4 +1,4 @@
-//go:generate go run ../../gen/api_gen.go equipment_categories Category "\"shields\""
+//go:generate go run ../../gen/api_gen.go Category "\"shields\""
 
 package equipment_categories
 

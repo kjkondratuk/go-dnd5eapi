@@ -1,4 +1,4 @@
-//go:generate go run ../gen/api_gen.go conditions Condition "\"blinded\""
+//go:generate go run ../gen/api_gen.go Condition "\"blinded\""
 
 package conditions
 

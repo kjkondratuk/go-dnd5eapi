@@ -1,4 +1,4 @@
-//go:generate go run ../gen/api_gen.go weapon_properties WeaponProperties "\"ammunition\""
+//go:generate go run ../gen/api_gen.go WeaponProperties "\"ammunition\""
 
 package weapon_properties
 
