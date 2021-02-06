@@ -13,35 +13,36 @@ import (
 	"github.com/kjkondratuk/go-dnd5eapi/api"
 )
 
-const (
-	// Endpoints for ability scores
-	Endpoint      = "/races"
-	ChildEndpoint = Endpoint + "/"
-)
-
 type (
 	raceClient struct {
-		basicsProvider api.BasicsProvider
+		api.BasicsProvider
+		uri string
 	}
 )
 
 type RaceClient interface {
 	GetList() (*api.ListResponse, error)
+	QueryList(query map[string]string) (*api.ListResponse, error)
 	GetByIndex(index string) (*RaceDetail, error)
 }
 
 func NewClient(basicsProvider api.BasicsProvider) RaceClient {
 	return &raceClient{
-		basicsProvider: basicsProvider,
+		BasicsProvider: basicsProvider,
+		uri: "/races",
 	}
 }
 
 func (ac *raceClient) GetList() (*api.ListResponse, error) {
-	return ac.basicsProvider.GetListForUrl(Endpoint)
+	return ac.GetListForUrl(ac.uri)
+}
+
+func (ac *raceClient) QueryList(query map[string]string) (*api.ListResponse, error) {
+	return ac.QueryListForUrl(ac.uri, query)
 }
 
 func (ac *raceClient) GetByIndex(index string) (*RaceDetail, error) {
-	result, err := ac.basicsProvider.ApiGet(ChildEndpoint + index)
+	result, err := ac.ApiGet(ac.uri + "/" + index)
 	if err != nil {
 		return nil, err
 	}

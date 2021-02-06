@@ -13,35 +13,36 @@ import (
 	"github.com/kjkondratuk/go-dnd5eapi/api"
 )
 
-const (
-	// Endpoints for ability scores
-	Endpoint      = "/weapon-properties"
-	ChildEndpoint = Endpoint + "/"
-)
-
 type (
 	weaponPropertiesClient struct {
-		basicsProvider api.BasicsProvider
+		api.BasicsProvider
+		uri string
 	}
 )
 
 type WeaponPropertiesClient interface {
 	GetList() (*api.ListResponse, error)
+	QueryList(query map[string]string) (*api.ListResponse, error)
 	GetByIndex(index string) (*api.Description, error)
 }
 
 func NewClient(basicsProvider api.BasicsProvider) WeaponPropertiesClient {
 	return &weaponPropertiesClient{
-		basicsProvider: basicsProvider,
+		BasicsProvider: basicsProvider,
+		uri: "/weapon-properties",
 	}
 }
 
 func (ac *weaponPropertiesClient) GetList() (*api.ListResponse, error) {
-	return ac.basicsProvider.GetListForUrl(Endpoint)
+	return ac.GetListForUrl(ac.uri)
+}
+
+func (ac *weaponPropertiesClient) QueryList(query map[string]string) (*api.ListResponse, error) {
+	return ac.QueryListForUrl(ac.uri, query)
 }
 
 func (ac *weaponPropertiesClient) GetByIndex(index string) (*api.Description, error) {
-	result, err := ac.basicsProvider.ApiGet(ChildEndpoint + index)
+	result, err := ac.ApiGet(ac.uri + "/" + index)
 	if err != nil {
 		return nil, err
 	}

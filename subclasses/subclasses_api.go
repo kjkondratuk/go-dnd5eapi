@@ -13,35 +13,36 @@ import (
 	"github.com/kjkondratuk/go-dnd5eapi/api"
 )
 
-const (
-	// Endpoints for ability scores
-	Endpoint      = "/subclasses"
-	ChildEndpoint = Endpoint + "/"
-)
-
 type (
 	subclassClient struct {
-		basicsProvider api.BasicsProvider
+		api.BasicsProvider
+		uri string
 	}
 )
 
 type SubclassClient interface {
 	GetList() (*api.ListResponse, error)
+	QueryList(query map[string]string) (*api.ListResponse, error)
 	GetByIndex(index string) (*SubclassDetail, error)
 }
 
 func NewClient(basicsProvider api.BasicsProvider) SubclassClient {
 	return &subclassClient{
-		basicsProvider: basicsProvider,
+		BasicsProvider: basicsProvider,
+		uri: "/subclasses",
 	}
 }
 
 func (ac *subclassClient) GetList() (*api.ListResponse, error) {
-	return ac.basicsProvider.GetListForUrl(Endpoint)
+	return ac.GetListForUrl(ac.uri)
+}
+
+func (ac *subclassClient) QueryList(query map[string]string) (*api.ListResponse, error) {
+	return ac.QueryListForUrl(ac.uri, query)
 }
 
 func (ac *subclassClient) GetByIndex(index string) (*SubclassDetail, error) {
-	result, err := ac.basicsProvider.ApiGet(ChildEndpoint + index)
+	result, err := ac.ApiGet(ac.uri + "/" + index)
 	if err != nil {
 		return nil, err
 	}
