@@ -37,6 +37,16 @@ func TestProficiency_GetList_IT(t *testing.T) {
 	assert.True(t, true, "Should complete successfully!")
 }
 
+func TestProficiency_QueryList_IT(t *testing.T) {
+	query := make(map[string]string, 1)
+	query["index"] = "battleaxes"
+	resp, err := Client.QueryList(query)
+	r, _ := json.Marshal(resp)
+	log.Print(fmt.Sprintf("Response: %s", r))
+	assert.Nil(t, err, "Should not receive an error contacting API.")
+	assert.True(t, true, "Should complete successfully!")
+}
+
 func TestProficiency_GetByIndex_IT(t *testing.T) {
 	resp, err := Client.GetByIndex("battleaxes")
 	r, _ := json.Marshal(resp)

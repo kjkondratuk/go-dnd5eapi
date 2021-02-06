@@ -7,6 +7,8 @@ func main() {
 	printSeparator()
 	listClasses()
 	printSeparator()
+	queryList()
+	printSeparator()
 }
 
 func printSeparator() {

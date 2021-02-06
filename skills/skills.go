@@ -1,4 +1,4 @@
-//go:generate go run ../gen/api_gen.go ../gen skills Skill SkillDetail "\"acrobatics\""
+//go:generate go run ../gen/api_gen.go skills Skill "\"acrobatics\""
 
 package skills
 

@@ -37,6 +37,16 @@ func TestCondition_GetList_IT(t *testing.T) {
 	assert.True(t, true, "Should complete successfully!")
 }
 
+func TestCondition_QueryList_IT(t *testing.T) {
+	query := make(map[string]string, 1)
+	query["index"] = "blinded"
+	resp, err := Client.QueryList(query)
+	r, _ := json.Marshal(resp)
+	log.Print(fmt.Sprintf("Response: %s", r))
+	assert.Nil(t, err, "Should not receive an error contacting API.")
+	assert.True(t, true, "Should complete successfully!")
+}
+
 func TestCondition_GetByIndex_IT(t *testing.T) {
 	resp, err := Client.GetByIndex("blinded")
 	r, _ := json.Marshal(resp)

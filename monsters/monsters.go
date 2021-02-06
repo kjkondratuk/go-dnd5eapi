@@ -1,4 +1,4 @@
-//go:generate go run ../gen/api_gen.go ../gen monsters Monster MonsterDetail "\"aboleth\""
+//go:generate go run ../gen/api_gen.go monsters Monster "\"aboleth\""
 
 package monsters
 

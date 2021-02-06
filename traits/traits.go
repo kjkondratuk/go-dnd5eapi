@@ -1,4 +1,4 @@
-//go:generate go run ../gen/api_gen.go ../gen traits Trait TraitDetail "\"brave\""
+//go:generate go run ../gen/api_gen.go traits Trait "\"brave\""
 
 package traits
 

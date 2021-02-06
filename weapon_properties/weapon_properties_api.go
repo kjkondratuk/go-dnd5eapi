@@ -3,7 +3,7 @@
 // Endpoint: weapon-properties
 // API Name: WeaponProperties
 // LC API Name: weaponProperties
-// API Class: api.Description
+// API Class: WeaponPropertiesDetail
 
 package weapon_properties
 
@@ -13,40 +13,41 @@ import (
 	"github.com/kjkondratuk/go-dnd5eapi/api"
 )
 
-const (
-	// Endpoints for ability scores
-	Endpoint      = "/weapon-properties"
-	ChildEndpoint = Endpoint + "/"
-)
-
 type (
 	weaponPropertiesClient struct {
-		basicsProvider api.BasicsProvider
+		api.BasicsProvider
+		uri string
 	}
 )
 
 type WeaponPropertiesClient interface {
 	GetList() (*api.ListResponse, error)
-	GetByIndex(index string) (*api.Description, error)
+	QueryList(query map[string]string) (*api.ListResponse, error)
+	GetByIndex(index string) (*WeaponPropertiesDetail, error)
 }
 
 func NewClient(basicsProvider api.BasicsProvider) WeaponPropertiesClient {
 	return &weaponPropertiesClient{
-		basicsProvider: basicsProvider,
+		BasicsProvider: basicsProvider,
+		uri: "/weapon-properties",
 	}
 }
 
 func (ac *weaponPropertiesClient) GetList() (*api.ListResponse, error) {
-	return ac.basicsProvider.GetListForUrl(Endpoint)
+	return ac.GetListForUrl(ac.uri)
 }
 
-func (ac *weaponPropertiesClient) GetByIndex(index string) (*api.Description, error) {
-	result, err := ac.basicsProvider.ApiGet(ChildEndpoint + index)
+func (ac *weaponPropertiesClient) QueryList(query map[string]string) (*api.ListResponse, error) {
+	return ac.QueryListForUrl(ac.uri, query)
+}
+
+func (ac *weaponPropertiesClient) GetByIndex(index string) (*WeaponPropertiesDetail, error) {
+	result, err := ac.ApiGet(ac.uri + "/" + index)
 	if err != nil {
 		return nil, err
 	}
 
-	d := api.Description{}
+	d := WeaponPropertiesDetail{}
 	err = json.Unmarshal(result, &d)
 	if err != nil {
 		return nil, err

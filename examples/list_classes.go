@@ -10,13 +10,13 @@ import (
 
 func listClasses() {
 	httpclient := &http.Client{}
-	client := go_dnd5eapi.NewClient(api.NewBasicsProvider(httpclient, "https://dnd5eapi.co/api"))
+	client := go_dnd5eapi.NewClient(api.NewBasicsProvider(httpclient, "https://www.dnd5eapi.co/api"))
 	list, err := client.Classes.GetList()
 	if err != nil {
 		// ... handle error ...
 	}
 	log.Println("Classes:")
 	for _, c := range list.Results {
-		log.Println(c.Name)
+		log.Println(" - " + c.Name)
 	}
 }

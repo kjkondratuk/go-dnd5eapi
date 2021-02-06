@@ -37,6 +37,16 @@ func TestSpell_GetList_IT(t *testing.T) {
 	assert.True(t, true, "Should complete successfully!")
 }
 
+func TestSpell_QueryList_IT(t *testing.T) {
+	query := make(map[string]string, 1)
+	query["index"] = "acid-arrow"
+	resp, err := Client.QueryList(query)
+	r, _ := json.Marshal(resp)
+	log.Print(fmt.Sprintf("Response: %s", r))
+	assert.Nil(t, err, "Should not receive an error contacting API.")
+	assert.True(t, true, "Should complete successfully!")
+}
+
 func TestSpell_GetByIndex_IT(t *testing.T) {
 	resp, err := Client.GetByIndex("acid-arrow")
 	r, _ := json.Marshal(resp)

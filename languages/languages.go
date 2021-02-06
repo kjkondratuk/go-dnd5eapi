@@ -1,4 +1,4 @@
-//go:generate go run ../gen/api_gen.go ../gen languages Language LanguageDetail "\"abyssal\""
+//go:generate go run ../gen/api_gen.go languages Language "\"abyssal\""
 
 package languages
 

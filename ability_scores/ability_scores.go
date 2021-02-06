@@ -1,4 +1,4 @@
-//go:generate go run ../gen/api_gen.go ../gen ability_scores AbilityScore AbilityScoreDetail "\"CHA\""
+//go:generate go run ../gen/api_gen.go ability_scores AbilityScore "\"cha\""
 
 package ability_scores
 

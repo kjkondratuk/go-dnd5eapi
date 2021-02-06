@@ -3,7 +3,7 @@
 // Endpoint: conditions
 // API Name: Condition
 // LC API Name: condition
-// API Class: api.Description
+// API Class: ConditionDetail
 
 package conditions
 
@@ -13,40 +13,41 @@ import (
 	"github.com/kjkondratuk/go-dnd5eapi/api"
 )
 
-const (
-	// Endpoints for ability scores
-	Endpoint      = "/conditions"
-	ChildEndpoint = Endpoint + "/"
-)
-
 type (
 	conditionClient struct {
-		basicsProvider api.BasicsProvider
+		api.BasicsProvider
+		uri string
 	}
 )
 
 type ConditionClient interface {
 	GetList() (*api.ListResponse, error)
-	GetByIndex(index string) (*api.Description, error)
+	QueryList(query map[string]string) (*api.ListResponse, error)
+	GetByIndex(index string) (*ConditionDetail, error)
 }
 
 func NewClient(basicsProvider api.BasicsProvider) ConditionClient {
 	return &conditionClient{
-		basicsProvider: basicsProvider,
+		BasicsProvider: basicsProvider,
+		uri: "/conditions",
 	}
 }
 
 func (ac *conditionClient) GetList() (*api.ListResponse, error) {
-	return ac.basicsProvider.GetListForUrl(Endpoint)
+	return ac.GetListForUrl(ac.uri)
 }
 
-func (ac *conditionClient) GetByIndex(index string) (*api.Description, error) {
-	result, err := ac.basicsProvider.ApiGet(ChildEndpoint + index)
+func (ac *conditionClient) QueryList(query map[string]string) (*api.ListResponse, error) {
+	return ac.QueryListForUrl(ac.uri, query)
+}
+
+func (ac *conditionClient) GetByIndex(index string) (*ConditionDetail, error) {
+	result, err := ac.ApiGet(ac.uri + "/" + index)
 	if err != nil {
 		return nil, err
 	}
 
-	d := api.Description{}
+	d := ConditionDetail{}
 	err = json.Unmarshal(result, &d)
 	if err != nil {
 		return nil, err
