@@ -10,7 +10,7 @@ go get github.com/kjkondratuk/go-dnd5eapi
 ## Create a client
 Simply:
 ```go
-client := godnd5eapi.NewApiClient("<Base URL Here>"))
+client := go_dnd5eapi.NewApiClient("<Base URL Here>"))
 ```
 
 Or, create a client with a client with a custom config:
@@ -19,7 +19,7 @@ myCustomClient := &http.Client{
     // ... custom client options here ...
 }
 
-client := godnd5eapi.NewApiClient("<Base URL Here>", godnd5eapi.WithHttpClient(myCustomClient))
+client := go_dnd5eapi.NewApiClient("<Base URL Here>", go_dnd5eapi.WithHttpClient(myCustomClient))
 ```
 
 ## Sample Calls
