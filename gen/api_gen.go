@@ -51,6 +51,7 @@ func main() {
 	testFile := template.Must(template.New("").Parse(string(testTemplateStr)))
 
 	tf, err := os.Create(packageNameString + "_api_test.go")
+	defer tf.Close()
 	if err != nil {
 		log.Fatal("Error writing file " + packageNameString + "_api_test.go")
 		os.Exit(-1)
