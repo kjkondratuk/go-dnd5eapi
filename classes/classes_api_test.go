@@ -9,9 +9,9 @@
 package classes
 
 import (
-	"fmt"
-	json "github.com/json-iterator/go"
-	"log"
+    json "github.com/json-iterator/go"
+    "fmt"
+    "log"
 	"net/http"
 	"os"
 	"testing"
@@ -31,6 +31,16 @@ func TestMain(t *testing.M) {
 
 func TestClass_GetList_IT(t *testing.T) {
 	resp, err := Client.GetList()
+	r, _ := json.Marshal(resp)
+	log.Print(fmt.Sprintf("Response: %s", r))
+	assert.Nil(t, err, "Should not receive an error contacting API.")
+	assert.True(t, true, "Should complete successfully!")
+}
+
+func TestClass_QueryList_IT(t *testing.T) {
+	query := make(map[string]string, 1)
+	query["index"] = "Rogue"
+	resp, err := Client.QueryList(query)
 	r, _ := json.Marshal(resp)
 	log.Print(fmt.Sprintf("Response: %s", r))
 	assert.Nil(t, err, "Should not receive an error contacting API.")
