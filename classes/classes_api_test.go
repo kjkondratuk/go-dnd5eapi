@@ -9,9 +9,9 @@
 package classes
 
 import (
-    json "github.com/json-iterator/go"
-    "fmt"
-    "log"
+	"fmt"
+	json "github.com/json-iterator/go"
+	"log"
 	"net/http"
 	"os"
 	"testing"

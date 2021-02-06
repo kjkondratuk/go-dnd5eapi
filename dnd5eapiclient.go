@@ -1,8 +1,8 @@
 package go_dnd5eapi
 
 import (
+	"github.com/kjkondratuk/go-dnd5eapi/ability_scores"
 	"github.com/kjkondratuk/go-dnd5eapi/api"
-	"github.com/kjkondratuk/go-dnd5eapi/api/ability_scores"
 	"github.com/kjkondratuk/go-dnd5eapi/classes"
 	classes_proficiency_rel "github.com/kjkondratuk/go-dnd5eapi/classes_proficiencies_rel"
 	"github.com/kjkondratuk/go-dnd5eapi/conditions"

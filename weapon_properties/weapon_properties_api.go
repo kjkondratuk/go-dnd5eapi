@@ -3,7 +3,7 @@
 // Endpoint: weapon-properties
 // API Name: WeaponProperties
 // LC API Name: weaponProperties
-// API Class: api.Description
+// API Class: WeaponPropertiesDetail
 
 package weapon_properties
 
@@ -23,7 +23,7 @@ type (
 type WeaponPropertiesClient interface {
 	GetList() (*api.ListResponse, error)
 	QueryList(query map[string]string) (*api.ListResponse, error)
-	GetByIndex(index string) (*api.Description, error)
+	GetByIndex(index string) (*WeaponPropertiesDetail, error)
 }
 
 func NewClient(basicsProvider api.BasicsProvider) WeaponPropertiesClient {
@@ -41,13 +41,13 @@ func (ac *weaponPropertiesClient) QueryList(query map[string]string) (*api.ListR
 	return ac.QueryListForUrl(ac.uri, query)
 }
 
-func (ac *weaponPropertiesClient) GetByIndex(index string) (*api.Description, error) {
+func (ac *weaponPropertiesClient) GetByIndex(index string) (*WeaponPropertiesDetail, error) {
 	result, err := ac.ApiGet(ac.uri + "/" + index)
 	if err != nil {
 		return nil, err
 	}
 
-	d := api.Description{}
+	d := WeaponPropertiesDetail{}
 	err = json.Unmarshal(result, &d)
 	if err != nil {
 		return nil, err

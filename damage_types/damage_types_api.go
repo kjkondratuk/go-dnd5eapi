@@ -3,7 +3,7 @@
 // Endpoint: damage-types
 // API Name: DamageType
 // LC API Name: damageType
-// API Class: api.Description
+// API Class: DamageTypeDetail
 
 package damage_types
 
@@ -23,7 +23,7 @@ type (
 type DamageTypeClient interface {
 	GetList() (*api.ListResponse, error)
 	QueryList(query map[string]string) (*api.ListResponse, error)
-	GetByIndex(index string) (*api.Description, error)
+	GetByIndex(index string) (*DamageTypeDetail, error)
 }
 
 func NewClient(basicsProvider api.BasicsProvider) DamageTypeClient {
@@ -41,13 +41,13 @@ func (ac *damageTypeClient) QueryList(query map[string]string) (*api.ListRespons
 	return ac.QueryListForUrl(ac.uri, query)
 }
 
-func (ac *damageTypeClient) GetByIndex(index string) (*api.Description, error) {
+func (ac *damageTypeClient) GetByIndex(index string) (*DamageTypeDetail, error) {
 	result, err := ac.ApiGet(ac.uri + "/" + index)
 	if err != nil {
 		return nil, err
 	}
 
-	d := api.Description{}
+	d := DamageTypeDetail{}
 	err = json.Unmarshal(result, &d)
 	if err != nil {
 		return nil, err

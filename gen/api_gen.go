@@ -6,16 +6,18 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"path"
 	"strings"
 	"text/template"
 )
 
 func main() {
-	templateRoot := os.Args[1]
-	packageNameString := os.Args[2]
-	apiName := os.Args[3]
-	apiClass := os.Args[4]
-	testInput := os.Args[5]
+	// templateRoot := os.Args[1]
+	templateRoot := path.Join(os.Getenv("GOPATH"), "src/github.com/kjkondratuk/go-dnd5eapi/gen")
+	packageNameString := os.Args[1]
+	apiName := os.Args[2]
+	apiClass := apiName + "Detail"
+	testInput := os.Args[3]
 	lcApiName := strings.ToLower(string(apiName[0])) + string(apiName[1:])
 	log.Println("Generating with template: " + packageNameString + " - " + apiName)
 

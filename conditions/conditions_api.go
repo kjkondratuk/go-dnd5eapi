@@ -3,7 +3,7 @@
 // Endpoint: conditions
 // API Name: Condition
 // LC API Name: condition
-// API Class: api.Description
+// API Class: ConditionDetail
 
 package conditions
 
@@ -23,7 +23,7 @@ type (
 type ConditionClient interface {
 	GetList() (*api.ListResponse, error)
 	QueryList(query map[string]string) (*api.ListResponse, error)
-	GetByIndex(index string) (*api.Description, error)
+	GetByIndex(index string) (*ConditionDetail, error)
 }
 
 func NewClient(basicsProvider api.BasicsProvider) ConditionClient {
@@ -41,13 +41,13 @@ func (ac *conditionClient) QueryList(query map[string]string) (*api.ListResponse
 	return ac.QueryListForUrl(ac.uri, query)
 }
 
-func (ac *conditionClient) GetByIndex(index string) (*api.Description, error) {
+func (ac *conditionClient) GetByIndex(index string) (*ConditionDetail, error) {
 	result, err := ac.ApiGet(ac.uri + "/" + index)
 	if err != nil {
 		return nil, err
 	}
 
-	d := api.Description{}
+	d := ConditionDetail{}
 	err = json.Unmarshal(result, &d)
 	if err != nil {
 		return nil, err

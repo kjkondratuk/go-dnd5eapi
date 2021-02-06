@@ -1,4 +1,4 @@
-//go:generate go run ../gen/api_gen.go ../gen magic_schools MagicSchool MagicSchoolDetail "\"abjuration\""
+//go:generate go run ../gen/api_gen.go magic_schools MagicSchool "\"abjuration\""
 
 package magic_schools
 

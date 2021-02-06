@@ -7,8 +7,8 @@ import (
 	"os"
 	"testing"
 
+	"github.com/kjkondratuk/go-dnd5eapi/ability_scores"
 	"github.com/kjkondratuk/go-dnd5eapi/api"
-	"github.com/kjkondratuk/go-dnd5eapi/api/ability_scores"
 	"github.com/kjkondratuk/go-dnd5eapi/skills"
 	"github.com/stretchr/testify/assert"
 )

@@ -1,3 +1,9 @@
-//go:generate go run ../gen/api_gen.go ../gen damage_types DamageType api.Description "\"lightning\""
+//go:generate go run ../gen/api_gen.go damage_types DamageType "\"lightning\""
 
 package damage_types
+
+import "github.com/kjkondratuk/go-dnd5eapi/api"
+
+type DamageTypeDetail struct {
+	api.Description
+}

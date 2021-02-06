@@ -1,10 +1,10 @@
-//go:generate go run ../gen/api_gen.go ../gen subraces Subrace SubraceDetail "\"high-elf\""
+//go:generate go run ../gen/api_gen.go subraces Subrace "\"high-elf\""
 
 package subraces
 
 import (
+	"github.com/kjkondratuk/go-dnd5eapi/ability_scores"
 	"github.com/kjkondratuk/go-dnd5eapi/api"
-	"github.com/kjkondratuk/go-dnd5eapi/api/ability_scores"
 )
 
 type (

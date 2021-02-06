@@ -1,4 +1,4 @@
-//go:generate go run ../gen/api_gen.go ../gen starting_equipment StartingEquipment StartingEquipmentDetail "\"barbarian\""
+//go:generate go run ../gen/api_gen.go starting_equipment StartingEquipment "\"barbarian\""
 
 package starting_equipment
 
