@@ -1,6 +1,6 @@
 # go-dnd5eapi
 
-A go client for interacting with the [dnd5eapi](https://www.dnd5eapi.co/).
+A go client for interacting with the [dnd5eapi](https://www.dnd5eapi.co/).  This is a first-pass at a go client with minimal dependencies, so there will likely be plenty of bugs at this stage--PRs are welcome.
 
 ## Install
 ```bash
@@ -22,33 +22,3 @@ myCustomClient := &http.Client{
 client := godnd5eapi.NewApiClient("<Base URL Here>", godnd5eapi.WithHttpClient(myCustomClient))
 ```
 
-## Supported Endpoints
-*(Work-in-progress)*
-
-| Endpoint | Fully Implemented | Partially Implemented | Not Implemented |
-| --- | :---: | :---: | :---: |
-| endpoints | X | - | - |
-| ------------------------------- | --- | --- | --- |
-| ability-scores | - | X | - |
-| classes | - | X | - |
-| classes-proficiency-rel | - | X | - |
-| damage-types | - | X | - |
-| equipment | - | X | - |
-| languages | - | X | - |
-| proficiencies | - | X | - |
-| races | - | X | - |
-| skills | - | X | - |
-| skill-ability-rel | - | X | - |
-| subclasses | - | X | - |
-| traits | - | X | - |
-| ------------------------------- | --- | --- | --- |
-| conditions | - | - | - |
-| equipment-categories | - | - | - |
-| features | - | - | - |
-| magic-schools | - | - | - |
-| monsters | - | - | - |
-| spellcasting | - | - | - |
-| spells | - | - | - |
-| starting-equipment | - | - | - |
-| subraces | - | - | - |
-| weapon-properties | - | - | - |
