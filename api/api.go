@@ -101,7 +101,7 @@ func (bp *basicsProvider) GetListForUrl(uri string) (*ListResponse, error) {
 }
 
 func (bp *basicsProvider) QueryListForUrl(uri string, query map[string]string) (*ListResponse, error) {
-	req, err := http.NewRequest(http.MethodGet, bp.baseUrl, nil)
+	req, err := http.NewRequest(http.MethodGet, bp.baseUrl+uri, nil)
 	if err != nil {
 		return nil, err
 	}
