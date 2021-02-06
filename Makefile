@@ -1,6 +1,6 @@
 GO=go
 MAKE=make
-API_ROOT=https://www.dnd5eapi.co/api
+API_ROOT=http://localhost:3000/api
 FLAGS=
 
 integration-test:

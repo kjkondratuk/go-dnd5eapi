@@ -1,6 +1,7 @@
 {
     "go.testEnvVars": {
-        "API_ROOT": "https://www.dnd5eapi.co/api"
+        // "API_ROOT": "https://www.dnd5eapi.co/api"
+        "API_ROOT": "http://localhost:3000/api"
     },
     "go.lintTool": "golangci-lint",
     "go.testFlags": [
