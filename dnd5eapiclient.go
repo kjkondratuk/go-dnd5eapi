@@ -16,8 +16,14 @@ import (
 	"github.com/kjkondratuk/go-dnd5eapi/proficiencies"
 	"github.com/kjkondratuk/go-dnd5eapi/races"
 	"github.com/kjkondratuk/go-dnd5eapi/skills"
+	"github.com/kjkondratuk/go-dnd5eapi/skills_ability_rel"
+	"github.com/kjkondratuk/go-dnd5eapi/spellcasting"
+	"github.com/kjkondratuk/go-dnd5eapi/spells"
+	"github.com/kjkondratuk/go-dnd5eapi/starting_equipment"
 	"github.com/kjkondratuk/go-dnd5eapi/subclasses"
+	"github.com/kjkondratuk/go-dnd5eapi/subraces"
 	"github.com/kjkondratuk/go-dnd5eapi/traits"
+	"github.com/kjkondratuk/go-dnd5eapi/weapon_properties"
 )
 
 type (
@@ -37,17 +43,27 @@ type (
 		Proficiencies      proficiencies.ProficiencyClient
 		Races              races.RaceClient
 		Skills             skills.SkillClient
+		SkillsAbility      skills_ability_rel.SkillAbilityRelClient
+		Spellcasting       spellcasting.SpellcastingClient
+		Spells             spells.SpellClient
+		StartingEquipment  starting_equipment.StartingEquipmentClient
 		Subclasses         subclasses.SubclassClient
+		Subraces           subraces.SubraceClient
 		Traits             traits.TraitClient
+		WeaponProperties   weapon_properties.WeaponPropertiesClient
 	}
 )
 
 func NewClient(basicsProvider api.BasicsProvider) *Client {
+	skillsClient := skills.NewClient(basicsProvider)
+	abilityScoresClient := ability_scores.NewClient(basicsProvider)
+	classesClient := classes.NewClient(basicsProvider)
+	proficienciesClient := proficiencies.NewClient(basicsProvider)
 	client := &Client{
 		basicsProvider:     basicsProvider,
-		AbilityScores:      ability_scores.NewClient(basicsProvider),
-		Classes:            classes.NewClient(basicsProvider),
-		ClassProficiencies: nil,
+		AbilityScores:      abilityScoresClient,
+		Classes:            classesClient,
+		ClassProficiencies: classes_proficiency_rel.NewClient(classesClient, proficienciesClient),
 		Conditions:         conditions.NewClient(basicsProvider),
 		Damage:             damage_types.NewClient(basicsProvider),
 		Endpoints:          endpoints.NewClient(basicsProvider),
@@ -56,12 +72,17 @@ func NewClient(basicsProvider api.BasicsProvider) *Client {
 		Languages:          languages.NewClient(basicsProvider),
 		MagicSchools:       magic_schools.NewClient(basicsProvider),
 		Monsters:           monsters.NewClient(basicsProvider),
-		Proficiencies:      proficiencies.NewClient(basicsProvider),
+		Proficiencies:      proficienciesClient,
 		Races:              races.NewClient(basicsProvider),
-		Skills:             skills.NewClient(basicsProvider),
+		Skills:             skillsClient,
+		SkillsAbility:      skills_ability_rel.NewClient(skillsClient, abilityScoresClient),
+		Spellcasting:       spellcasting.NewClient(basicsProvider),
+		Spells:             spells.NewClient(basicsProvider),
+		StartingEquipment:  starting_equipment.NewClient(basicsProvider),
 		Subclasses:         subclasses.NewClient(basicsProvider),
+		Subraces:           subraces.NewClient(basicsProvider),
 		Traits:             traits.NewClient(basicsProvider),
+		WeaponProperties:   weapon_properties.NewClient(basicsProvider),
 	}
-	client.ClassProficiencies = classes_proficiency_rel.NewClient(client.Classes, client.Proficiencies)
 	return client
 }
