@@ -52,9 +52,3 @@ client := godnd5eapi.NewApiClient("<Base URL Here>", godnd5eapi.WithHttpClient(m
 | starting-equipment | - | - | - |
 | subraces | - | - | - |
 | weapon-properties | - | - | - |
-
-
-## Run All Tests
-```text
-API_ROOT='https://www.dnd5eapi.co/api' go test -count 1 -tags "unit integration" -v ./...
-```
