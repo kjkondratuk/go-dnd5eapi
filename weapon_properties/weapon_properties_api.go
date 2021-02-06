@@ -8,7 +8,7 @@
 package weapon_properties
 
 import (
-	"encoding/json"
+	json "github.com/json-iterator/go"
 
 	"github.com/kjkondratuk/go-dnd5eapi/api"
 )

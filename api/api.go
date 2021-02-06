@@ -1,10 +1,11 @@
 package api
 
 import (
-	"encoding/json"
 	"errors"
 	"io/ioutil"
 	"net/http"
+
+	json "github.com/json-iterator/go"
 )
 
 type (
