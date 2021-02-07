@@ -1,5 +1,3 @@
-// +build ignore
-
 package main
 
 import (
@@ -22,7 +20,11 @@ func main() {
 		os.Getenv("GOPACKAGE"),
 		// os.Getenv("DOLLAR"),
 	)
-	templateRoot := path.Join(os.Getenv("GOPATH"), "src/github.com/kjkondratuk/go-dnd5eapi/gen")
+	p, _ := os.Getwd()
+	parts, _ := path.Split(p)
+	// log.Println(parts)
+	templateRoot := parts + "gen"
+	log.Println(templateRoot)
 	packageNameString := os.Getenv("GOPACKAGE")
 	apiName := os.Args[1]
 	apiClass := apiName + "Detail"
@@ -46,7 +48,8 @@ func main() {
 		testInput,
 	}
 
-	templateStr, err := ioutil.ReadFile(templateRoot + "/api_template.tpl")
+	log.Println("Reading: " + templateRoot + "/api_template.tmpl")
+	templateStr, err := ioutil.ReadFile(templateRoot + "/api_template.tmpl")
 	apiFile := template.Must(template.New("").Parse(string(templateStr)))
 
 	f, err := os.Create(packageNameString + "_api.go")
@@ -56,7 +59,7 @@ func main() {
 	}
 	apiFile.Execute(f, params)
 
-	testTemplateStr, err := ioutil.ReadFile(templateRoot + "/api_template_test.tpl")
+	testTemplateStr, err := ioutil.ReadFile(templateRoot + "/api_template_test.tmpl")
 	testFile := template.Must(template.New("").Parse(string(testTemplateStr)))
 
 	tf, err := os.Create(packageNameString + "_api_test.go")
