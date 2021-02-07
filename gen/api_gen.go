@@ -12,21 +12,13 @@ import (
 )
 
 func main() {
-	// templateRoot := os.Args[1]
-	// Arch: %s OS: %s Line: %s Dollar: %s
 	log.Printf("File: %s Package: %s",
-		// os.Getenv("GOARCH"),
-		// os.Getenv("GOOS"),
 		os.Getenv("GOFILE"),
-		// os.Getenv("GOLINE"),
 		os.Getenv("GOPACKAGE"),
-		// os.Getenv("DOLLAR"),
 	)
 	p, _ := os.Getwd()
 	parts, _ := path.Split(p)
-	// log.Println(parts)
 	templateRoot := parts + "gen"
-	log.Println(templateRoot)
 	packageNameString := os.Getenv("GOPACKAGE")
 	apiName := os.Args[1]
 	apiClass := apiName + "Detail"
@@ -71,6 +63,4 @@ func main() {
 		os.Exit(-1)
 	}
 	testFile.Execute(tf, params)
-
-	//log.Println("Generating... " + os.Args[1])
 }
