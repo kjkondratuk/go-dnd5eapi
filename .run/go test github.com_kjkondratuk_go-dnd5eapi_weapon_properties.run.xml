@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="go test github.com/kjkondratuk/go-dnd5eapi/weapon_properties" type="GoTestRunConfiguration" factoryName="Go Test" nameIsGenerated="true">
+    <module name="go-dnd5eapi" />
+    <working_directory value="$PROJECT_DIR$/weapon_properties" />
+    <useCustomBuildTags value="true" />
+    <envs>
+      <env name="API_ROOT" value="https://www.dnd5eapi.co/api" />
+    </envs>
+    <framework value="gotest" />
+    <kind value="PACKAGE" />
+    <package value="github.com/kjkondratuk/go-dnd5eapi/weapon_properties" />
+    <directory value="$PROJECT_DIR$" />
+    <filePath value="$PROJECT_DIR$" />
+    <method v="2" />
+  </configuration>
+</component>
